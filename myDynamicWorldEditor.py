@@ -10,21 +10,27 @@
 # Context: Project <Testing of Autonomous Parking> @ IAIK 2024
 
 """
-    Version 1.0: Configuration script for multiple purposes, such as ...
+    Version 1.1: Configuration script for multiple purposes, such as ...
         - printing the spectator current view position and rotation
         - setting up defined world environments
         - removing existing actors / pedestrians from the world
+        - loading a map
 
     Important Notes:
         - The "_Opt" map enable map layering, which is used for removing already parked vehicles.
         - No setup for Town15 as it is not layered
 
     Args:
-        --setup-town-04opt
+        --setup-town04opt
             -> Loads "Town04_Opt"
             -> Removes already parked vehicle (by removing the corresp. map layer)
             -> Set specatator view above parking space
-        
+         
+        --load XXX (where XXX is the map name in CARLA, i.e. "Town01", "Town01_Opt", ...)
+            -> Loads the corresponding map
+            -> Does NOT perform anything else (spectator, layer removement, ...)
+            -> Consider using the --setup-XXX method for performing a sequence of setup steps
+
         --remove-all-vehicles
             -> Simply removes all existing actor vehicles from the map
             -> Note: Does not do anything with traffic manager, behavioured car might lead to bug!
@@ -38,7 +44,7 @@
         --remove-last-actor
             -> Removes the last actor that was added. If no actor was added, undefined behaviour might occur.
 
-        --spawn-cone-X x,y,z,yaw (where X is in {1, 2, 3, 4, 5})
+        --spawn-cone-XXX x,y,z,yaw (where XXX is in {1, 2, 3, 4, 5})
             -> Spawns a static assert at the given position with the given rotation
             -> Though the name is 'cone', it might be not an actual cone (but semantically similar!)
 """
@@ -153,15 +159,18 @@ def spawnCone(client: carla.Client, bp_lib: carla.BlueprintLibrary, cone_type: i
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-def town04Setup(client: carla.Client, world: carla.World, settings: carla.WorldSettings, bp_lib: carla.BlueprintLibrary, spectator: carla.Actor):
+def town04Setup(client: carla.Client, 
+                world: carla.World, 
+                settings: carla.WorldSettings, 
+                bp_lib: carla.BlueprintLibrary, 
+                spectator: carla.Actor):
     print("About to setup Town04_Opt (without parked vehicles, with default spectator above parking space) ...")
 
     # Load world and remove existing parked vehicles
     world = client.load_world("Town04_Opt") 
     world.unload_map_layer(carla.MapLayer().ParkedVehicles)
 
-    # Reassignments (IMPORTANT: load_changes() makes prior .world() members outdated)
-    world = client.get_world()
+    # Reassignments (IMPORTANT: load_world() recreates .world object =>  prior .world() members will be outdated)
     settings = world.get_settings()
     bp_lib = world.get_blueprint_library()
     spectator = world.get_spectator()
@@ -174,13 +183,43 @@ def town04Setup(client: carla.Client, world: carla.World, settings: carla.WorldS
 
 # ---------------------------------------------------------------------------------------------------------------------
 
+def loadWorld(client: carla.Client, 
+              world: carla.World, 
+              settings: carla.WorldSettings, 
+              bp_lib: carla.BlueprintLibrary, 
+              spectator: carla.Actor, 
+              request_world_name: str):
+    print(f"About to load requested world {request_world_name}...")
+
+    # Load map name and throw away path (i.e. '/Game/Carla/Maps/Town06' => 'Town06')
+    maps_available = [ entry.split("/")[-1] for entry in client.get_available_maps() ] 
+
+    # Check if request map exists
+    if (request_world_name not in maps_available):
+        raise ValueError(f"Map <{requested_world_name}> does not exist. Please choose one of {maps_available}!")
+    
+    # Actually load requested world
+    world = client.load_world(request_world_name)
+
+    # Reassignments (IMPORTANT: load_world() recreates .world object =>  prior .world() members will be outdated)
+    settings = world.get_settings()
+    bp_lib = world.get_blueprint_library()
+    spectator = world.get_spectator()
+
+# ---------------------------------------------------------------------------------------------------------------------
+
 def main():
     argparser = argparse.ArgumentParser()
 
     argparser.add_argument(
-        '-t04', '--setup-town04opt',
+        '-st04', '--setup-town04opt',
         action='store_true',
         help='Loads the predefined settings for the Town04_Opt setup.'
+    )
+    argparser.add_argument(
+        '-t', '--load',
+        type=str,
+        help='Loads a CARLA map, i.e. `--load Town04_Opt` loads the corresponding map.'
     )
     argparser.add_argument(
         '-rv', '--remove-all-vehicles',
@@ -257,6 +296,14 @@ def main():
         if (args.setup_town04opt):
             town04Setup(client=client, world=world, settings=settings, bp_lib=bp_lib, spectator=spectator)
         
+        if (args.load):
+            loadWorld(client=client, 
+                      world=world, 
+                      settings=settings, 
+                      bp_lib=bp_lib, 
+                      spectator=spectator, 
+                      request_world_name=args.load)
+
         if (args.remove_all_vehicles):
             removeAllVehicles(client=client, world=world)
 
@@ -284,15 +331,14 @@ def main():
         if (args.spawn_cone_5 is not None):
             spawnCone(client=client, bp_lib=bp_lib, cone_type=5, args=args.spawn_cone_5)
     
-        # TODO: Weather setup
+        # TODO: Weather setup ?
 
         # 4. wait a tick just in case (not stricly necessary)
 
         world.wait_for_tick()
 
     except BaseException as e:
-        print(e)
-        sys.exit(1)
+        print(f"{e}")
 
     finally:
         print('All done, bye~')
