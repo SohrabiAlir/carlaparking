@@ -35,7 +35,7 @@
 - [Pedestrian Blueprint Catalogue](https://carla.readthedocs.io/en/latest/catalogue_pedestrians/)
 - [Static Asset Catalogue](https://carla.readthedocs.io/en/latest/catalogue_props/)
 
-[**ScenarioRunner OpenSCENARIO Support**]() — Overview about the interface specifics for the interface between OpenSCENARIO 1.0 and CARLA.
+[**ScenarioRunner OpenSCENARIO Support**](../Docs/openscenario_support.md) — Overview about the interface specifics for the interface between OpenSCENARIO 1.0 and CARLA.
 
 [**ASAM OpenSCEARIO 1.0 Specification**](https://releases.asam.net/OpenSCENARIO/1.0.0/ASAM_OpenSCENARIO_BS-1-2_User-Guide_V1-0-0.html) — Formal Specifications of OpenSCENARIO 1.0.
 
