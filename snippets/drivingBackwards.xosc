@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2020-03-24T12:00:00" description="CARLA:PedestrianCrossing" author=""/>
+  <ParameterDeclarations/>
+  <CatalogLocations/>
+
+<!-- Define Map -->
+
+  <RoadNetwork>
+    <LogicFile filepath="Town04_Opt"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+ 
+<!-- Define Entities -->
+  
+  <Entities>
+	
+	<ScenarioObject name="hero">
+      <Vehicle name="vehicle.dodge.charger_2020" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="left">
+      <Vehicle name="vehicle.dodge.charger_2020" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
+          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/> <!-- TODO: Verify Params -->
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/> <!-- TODO: Verify Params -->
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="right">
+      <Vehicle name="vehicle.citroen.c3" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
+          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/> <!-- TODO: Verify Params -->
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/> <!-- TODO: Verify Params -->
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+  </Entities>
+
+<!-- Define Story -->
+  
+  <Storyboard>
+  
+   <!-- 1. Define Initial -->
+   
+    <Init>
+      <Actions>
+	  
+	  	<!-- 1.1. Init Environment -->
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2019-06-25T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.35" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="rain" intensity="0.2"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+	
+        <!-- 1.2. Init Ego Vehicle -->
+        <Private entityRef="hero">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="290" y="-232.6" z="0.3" h="0"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="0"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+				
+		<!-- 1.3. Init Parked Car -->
+		<Private entityRef="right">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="290" y="-229.2" z="0.3" h="3.1415926"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<!-- 1.4. Init Parked Car -->
+		<Private entityRef="left">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="290" y="-235.9" z="0.3" h="0"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+      </Actions>
+    </Init>
+    
+	<!-- 2. STORY -->
+	
+    <Story name="MyStory">
+      <Act name="Behavior">
+		<ManeuverGroup maximumExecutionCount="1" name="ManeuverSequence">
+		  
+		  <!-- TODO: What is htis ??? -->
+		  <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="right"/>
+          </Actors>
+		  
+		  <!-- 2.1. Behaviour -->
+		  <Maneuver name="DrivingBackwardsSnippet">
+		  
+		    <!-- EVENT: CHILD STARTS RUNNING -->
+			
+		    <Event name="StartDriving" priority="overwrite">
+			
+			  <Action name="StartDriving">
+				
+				<PrivateAction>
+                  <LongitudinalAction>
+                      <OverrideControllerValueAction>
+                          <Throttle>
+                              <Value value="0"/>
+                              <Active active="true"/>
+                          </Throttle>
+                          <SteeringWheel>
+                              <Value value="0"/>
+                              <Active active="true"/>
+                          </SteeringWheel>
+                      </OverrideControllerValueAction>
+                  </LongitudinalAction>
+				</PrivateAction>
+					
+								 
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="5" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="10.0"/> <!-- Try to set minus -->
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+				
+              </Action>
+			  
+			  <StartTrigger> <!-- Immediately start driving backwards -->
+                <ConditionGroup>
+                  <Condition name="ImmediateStartCondition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+			  
+			</Event>
+			
+			<!-- EVENT: Wait and dno nothing (once drive backwards was performed) -->
+			
+			<Event name="WaitAndDoNothing" priority="overwrite">
+			  
+			  <Action name="WaitAndDoNothing">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="10" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0.0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+			  
+			  <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="AfterStartDriving" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <StoryboardElementStateCondition storyboardElementType="action" 
+					                                   storyboardElementRef="StartDriving" 
+													   state="completeState"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+			  
+			</Event>
+		    
+		  </Maneuver>
+		  
+		</ManeuverGroup>
+		
+		<!-- 2.2. Story Start -->
+		
+		<StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="0"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+		
+      </Act>
+    </Story>
+
+    <!-- 3. Overall SUCCESS/FAILURE Test Criteria -->
+	
+	<StopTrigger>
+      <ConditionGroup>
+	    <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+	  </ConditionGroup>
+	 </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

@@ -11,7 +11,7 @@
 
 """
     Version 1.0: Script for filling parking spaces by custom CSV. 
-    REQUIRED: Already correctly set-up world (see myConfig.py)
+    REQUIRED: Already correctly set-up world (see myDynamicWorldEditor.py)
 
     Description:
         - Script reads and parses CSV file, spawns vehicles according to the specified CSV within the parking lot.

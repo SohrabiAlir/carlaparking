@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:FollowLeadingVehicle" author=""/>
+  
+  <ParameterDeclarations>
+    <ParameterDeclaration name="leadingSpeed" parameterType="double" value="40.0"/>
+  </ParameterDeclarations>
+  <CatalogLocations/>
+  
+  <RoadNetwork> <!-- 1. Define Road Network -->
+    <LogicFile filepath="Town01"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+  
+  <Entities> <!-- 2. Define all entities 
+					=> 2.1.: Ego Vehicle ("Hero" entity)
+					=> 2.2.: Other NPC car
+			  -->
+  
+	<!-- 2.1. Ego Vehicle ("hero") -->
+    <ScenarioObject name="hero">
+      <Vehicle name="vehicle.lincoln.mkz_2017" vehicleCategory="car">
+		<!-- Technical Properties of hero car -->
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+		<!-- Blueprint Properties -->
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+          <Property name="color" value="0,0,255"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<!-- 2.2. Other NPC car -->
+    <ScenarioObject name="adversary">
+      <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+		<!-- Technical Properties of NPC car -->
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+		<!-- Blueprint Properties -->
+        <Properties>
+          <Property name="type" value="simulation"/>
+          <Property name="color" value="255,0,0"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+  </Entities>
+  
+  <Storyboard> <!-- 3. Storyboard 
+						=> 3.1. Initialize Environment + all entities
+						=> 3.2. Create Story
+						=> 3.3. Define OVERALL Criteria for SUCCESS/FAILURE
+			    -->
+  
+    <Init> <!-- 3.1. Initialize Environment + all entities
+					=> 3.1.1. Init: Environment
+					=> 3.1.2. Init: Hero
+					=> 3.1.3. Init: NPC car 
+			-->
+      <Actions>
+	  
+		<!-- 3.1.1. Init: Environment -->
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2020-03-20T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.85" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="dry" intensity="0.0"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+		
+		<!-- 3.1.2. Init: Hero 
+					=>	3.1.2.1. Placement of Entity
+					=> 	3.1.2.2. Assign behaviour with controller
+		-->
+        <Private entityRef="hero">
+		  <!-- 3.1.2.1. Placement of Entity -->
+          <PrivateAction> 
+            <TeleportAction>
+              <Position>
+                <RoadPosition roadId="4" s="48.58" t="2.75"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+		  <!-- 3.1.2.2. Assign behaviour with controller -->
+ 		  <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="false"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+		
+		<!-- 3.1.3 Init: NPC car 
+					=> 3.1.3.1. Placement of Entity 
+		-->
+        <Private entityRef="adversary">
+		  <!-- 3.1.3.1. Placement of Entity -->
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <RelativeRoadPosition entityRef="hero" ds="50" dt="-1.0"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+      </Actions>
+    </Init>
+	
+    <Story name="MyStory"> <!-- 3.2. Create Story 
+									=> 3.2.1. Define Act
+									=> 3.2.1.1. Define MeneuverGroup
+									=> 3.2.1.1.1. Define Maneuver
+									=> 3.2.1.1.1.1. Define Event: LeadingVehicleKeepsVelocity
+									=> 3.2.1.1.1.1.1. Define LeadingVehicleKeepsVelocity Behaviour (Action)
+									=> 3.2.1.1.1.1.2. Define LeadingVehicleKeepsVelocity Start Condition (StartTrigger)
+									=> 3.2.1.1.1.2. Define Event: LeadingVehicleWaits
+									=> 3.2.1.1.1.2.1. Define LeadingVehicleWaits Behaviour (Action)
+									=> 3.2.1.1.1.2.2. Define LeadingVehicleWaits Start Condition (StartTrigger)
+									=> 3.2.1.2. Define StartTrigger for Act (StartConditions)
+									=> 3.2.1.3. Define StopTrigger for Act (EndCondition)
+							-->
+	
+      <Act name="Behavior">
+	  
+        <ManeuverGroup name="ManeuverSequence" maximumExecutionCount="1">
+		
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="adversary"/>
+          </Actors>
+		  
+          <Maneuver name="FollowLeadingVehicleManeuver">
+			
+			<!-- 3.2.1.1.1.1. Define Event: LeadingVehicleKeepsVelocity -->
+			
+            <Event name="LeadingVehicleKeepsVelocity" priority="overwrite">
+			  <!-- 3.2.1.1.1.1.1. Define LeadingVehicleKeepsVelocity Behaviour (Action) -->
+              <Action name="LeadingVehicleKeepsVelocity">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="20" dynamicsDimension="distance"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="$leadingSpeed"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+			  <!-- 3.2.1.1.1.1.2. Define LeadingVehicleKeepsVelocity Start Condition (StartTrigger) -->
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="StartConditionLeadingVehicleKeepsVelocity" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="hero"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <RelativeDistanceCondition entityRef="adversary" relativeDistanceType="longitudinal" value="40.0" freespace="true" rule="lessThan"/>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+			  
+            </Event>
+			
+			<!-- 3.2.1.1.1.2. Define Event: LeadingVehicleWaits -->
+			
+            <Event name="LeadingVehicleWaits" priority="overwrite">
+			  <!-- 3.2.1.1.1.2.1. Define LeadingVehicleWaits Behaviour (Action) -->
+              <Action name="LeadingVehicleWaits">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="10" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0.0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+			  <!-- 3.2.1.1.1.2.2. Define LeadingVehicleWaits Start Condition (StartTrigger) -->
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="AfterLeadingVehicleKeepsVelocity" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <StoryboardElementStateCondition storyboardElementType="action" storyboardElementRef="LeadingVehicleKeepsVelocity" state="endTransition"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+			  
+            </Event>
+			
+          </Maneuver>
+        </ManeuverGroup>
+		
+		<!-- 3.2.1.2. Define StartTrigger for Act (StartConditions) -->
+		
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="1.0"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+            <Condition name="StartTime" delay="0" conditionEdge="rising">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="equalTo"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+		
+		<!-- 3.2.1.3. Define StopTrigger for Act (EndCondition) -->
+		
+        <StopTrigger>
+          <ConditionGroup>
+            <Condition name="EndCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="200.0"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StopTrigger>
+      
+	  </Act>
+    </Story>
+	
+	<!-- 3.3. Define OVERALL Criteria for SUCCESS/FAILURE -->
+	
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="criteria_RunningStopTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+        <Condition name="criteria_RunningRedLightTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+        <Condition name="criteria_WrongLaneTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+        <Condition name="criteria_OnSidewalkTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+        <Condition name="criteria_KeepLaneTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+        <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+        <Condition name="criteria_DrivenDistanceTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="distance_success" value="100" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+	
+  </Storyboard>
+</OpenSCENARIO>

@@ -14,7 +14,6 @@
         - printing the spectator current view position and rotation
         - setting up defined world environments
         - removing existing actors / pedestrians from the world
-        - loading a map
 
     Important Notes:
         - The "_Opt" map enable map layering, which is used for removing already parked vehicles.
@@ -44,7 +43,7 @@
         --remove-last-actor
             -> Removes the last actor that was added. If no actor was added, undefined behaviour might occur.
 
-        --spawn-cone-XXX x,y,z,yaw (where XXX is in {1, 2, 3, 4, 5})
+        --spawn-cone-XXX [x,y,z,yaw] (where XXX is in {1, 2, 3, 4, 5})
             -> Spawns a static assert at the given position with the given rotation
             -> Though the name is 'cone', it might be not an actual cone (but semantically similar!)
 """
@@ -127,6 +126,8 @@ def removeLastActor(client: carla.Client, world: carla.World):
 def spawnCone(client: carla.Client, bp_lib: carla.BlueprintLibrary, cone_type: int, args):
     print(f"About to spawn static asset ...")
 
+    # Initial format: [X,Y,Z,YAW]
+    args = args[1:-1]
     arg_split = args.split(',')
 
     if (len(arg_split) != 4):
@@ -245,31 +246,31 @@ def main():
         '-sc1', '--spawn-cone-1',
         type=str,
         default=None,
-        help='Spawns a cone (static asset). Usage: --spawn-cone-1 X,Y,Z,YAW'
+        help='Spawns a cone (static asset). Usage: --spawn-cone-1 [X,Y,Z,YAW]'
     )
     argparser.add_argument(
         '-sc2', '--spawn-cone-2',
         type=str,
         default=None,
-        help='Spawns a cone (static asset). Usage: --spawn-cone-2 X,Y,Z,YAW'
+        help='Spawns a cone (static asset). Usage: --spawn-cone-2 [X,Y,Z,YAW]'
     )
     argparser.add_argument(
         '-sc3', '--spawn-cone-3',
         type=str,
         default=None,
-        help='Spawns a cone (static asset). Usage: --spawn-cone-3 X,Y,Z,YAW'
+        help='Spawns a cone (static asset). Usage: --spawn-cone-3 [X,Y,Z,YAW]'
     )
     argparser.add_argument(
         '-sc4', '--spawn-cone-4',
         type=str,
         default=None,
-        help='Spawns a cone (static asset). Usage: --spawn-cone-4 X,Y,Z,YAW'
+        help='Spawns a cone (static asset). Usage: --spawn-cone-4 [X,Y,Z,YAW]'
     )
     argparser.add_argument(
         '-sc5', '--spawn-cone-5',
         type=str,
         default=None,
-        help='Spawns a cone (static asset). Usage: --spawn-cone-5 X,Y,Z,YAW'
+        help='Spawns a cone (static asset). Usage: --spawn-cone-5 [X,Y,Z,YAW]'
     )
 
     args = argparser.parse_args()
