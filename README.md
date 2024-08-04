@@ -5,12 +5,13 @@
 ## Directory Hirachy
 
 | Directory  | Content |
-| ---------- | ------  |
-| **`docs`**       | Overview about all scenarios and detailed scenario descriptions
-| **`notes`**      | Collection of all custom notes (mainly pdf slides)
-| **`references`** | Analysed and commented OpenSCENARIO 1.0 files that were provided form the scenario runner (`scenario_runner-0.9.15 > srunner > examples > *.oscx`)
-| **`scenarios`** | Custom scenario files (.xosc)
-| **`scripts`**   | Custom Python scripts for scenarios
+| ---------------------------------- | -------------------------------------- |
+| [**`docs`**](docs/README.md)       | Overview about all scenarios and detailed scenario descriptions
+| **`integrate`** | Files that must be added / repalced in the scenario-runner.  
+| **`notes`**                        | Collection of all custom notes (mainly pdf slides)
+| **`references`**                   | Analysed and commented OpenSCENARIO 1.0 files that were provided form the scenario runner (`scenario_runner-0.9.15 > srunner > examples > *.oscx`)
+| **`scenarios`**                    | Custom scenario files (.xosc)
+| **`scripts`**                      | Custom Python scripts for scenarios
 
 ## Useful References & Links
 

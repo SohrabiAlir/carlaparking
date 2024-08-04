@@ -280,6 +280,18 @@
           </ConditionGroup>
         </StartTrigger>
 		
+		<!-- 2.3. Story END (applies if some events are still not executed) -->
+		
+		<StopTrigger>
+            <ConditionGroup>
+                <Condition name="TimeLimitReached" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                        <SimulationTimeCondition value="30" rule="greaterThan"/>
+                    </ByValueCondition>
+                </Condition>
+            </ConditionGroup>
+        </StopTrigger>
+		
       </Act>
     </Story>
 
@@ -292,6 +304,14 @@
             <ParameterCondition parameterRef="" value="" rule="lessThan"/>
           </ByValueCondition>
         </Condition>
+		
+		<Condition name="criteria_CustomFinallyInTargetArea" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="min_x,max_x,min_y,max_y" value="287.7,294.27,-234.3,-231.1" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+
+		
 	  </ConditionGroup>
 	 </StopTrigger>
 
