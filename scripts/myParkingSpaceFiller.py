@@ -61,7 +61,8 @@ except IndexError:
 import carla
 
 import argparse
-import typing # bc python < 3.8 :(
+import math
+import typing # bc python < 3.8
 import numpy as np
 import pandas as pd
 
@@ -123,90 +124,170 @@ DEFAULT_CARS_BP = [
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-def readParkingConfiguration(file_path: str) -> pd.DataFrame:
-    """
-    Reads CSV, makes a basic sanity check makes data accessable as pandas dataframe. 
+class ISpawner(object):
 
-    Args:
-        file_path (str): Path to csv file (including file name and .csv ending)
+    def readCSV(self, file_path: str) -> pd.DataFrame:
+        """
+        Reads CSV, makes a basic sanity check makes data accessable as pandas dataframe. 
 
-    Returns:
-        pd.DataFarme: CSV content ('None' entries are parsed as np.nan).
-    """
+        Args:
+            file_path (str): Path to csv file (including file name and .csv ending)
 
-    df = pd.read_csv(file_path)
-    df.replace('None', np.nan, inplace=True)
+        Returns:
+            pd.DataFarme: CSV content ('None' entries are parsed as np.nan).
+        """
+        raise NotImplementedError("Must be implemented in derived class!")
 
-    # Data verification
+    def buildSpawnBatch(self, bp_lib: carla.BlueprintLibrary, df: pd.DataFrame) -> typing.List[carla.command.SpawnActor]:
+        """
+        Prepares the batch for all spawning entities according to the parsed CSV configuration file.
 
-    if (['id', 'row', 'col', 'x', 'y', 'yaw', 'vehicle_bp'] != df.columns.tolist()):
-        raise ValueError("CSV file expects: <id,row,col,x,y,yaw,vehicle_bp> columns!")
+        Args:
+            bp_lib (carla.BluePrintLibrary): Reference to the client's blueprint library.
+            df (pd.Dataframe): (Already validated) CSV file for parking space configuration.
 
-    return df
+        Returns:
+            list[carla.command.SpawnActor]: The prepared batch for spawning all vehicles according to df. 
+        """
+        raise NotImplementedError("Must be implemented in derived class!")
 
-# ---------------------------------------------------------------------------------------------------------------------
+    def generateOSCX(self, df: pd.DataFrame) -> str:
+        """
+        Generates the corresponding OpenSCENARIO 1.0 code for the entity definitions. 
 
-def buildVehicleSpawnBatch(bp_lib: carla.BlueprintLibrary, df: pd.DataFrame,) -> typing.List[carla.command.SpawnActor]:
-    """
-    Prepares the batch for all spawning vehicles according to the parsed CSV configuration file.
+        Args:
+            df (pd.DataFrame): (Already validated) CSV file for parking space configuration.
 
-    Args:
-        bp_lib (carla.BluePrintLibrary): Reference to the client's blueprint library.
-        df (pd.Dataframe): (Already validated) CSV file for parking space configuration.
+        Returns:
+            str: The generated oscx tags that belong within the <Entity> area.
+        """
+        raise NotImplementedError("Must be implemented in derived class!")
 
-    Returns:
-        list[carla.command.SpawnActor]: The prepared batch for spawning all vehicles according to df. 
-    """
-    batch = []
+    def _degToRad(self, degrees: float) -> float:
+        """
+        Converts degrees to radians.
 
-    for index, row in df.iterrows():
-        # set default values
-        vehicle_bp = np.random.choice(bp_lib.filter(np.random.choice(DEFAULT_CARS_BP)))
-        color = np.random.choice(vehicle_bp.get_attribute('color').recommended_values)
-        yaw = float(np.random.choice(DEFAULT_YAWS))
+        Args:
+            degrees (float): The angle in degrees.
 
-        # override if CSV specifies concrete values 
-        if not pd.isna(row['vehicle_bp']):
-            vehicle_bp = np.random.choice(bp_lib.filter("vehicle.tesla.model3"))
-        if not pd.isna(row['yaw']):
-            yaw = float(row['yaw'])
+        Returns: 
+            float: The convertes degree in radians.
+        """
+        return degrees * (math.pi / 180)
 
-        vehicle_bp.set_attribute('color', color)
+# =====================================================================================================================
 
-        # finally, build batch (data validity was already verified in readParkingConfiguration)
-        batch.append(
-            carla.command.SpawnActor(
-                vehicle_bp, 
-                carla.Transform(
-                    carla.Location(x=float(row['x']), y=float(row['y']), z=1), 
-                    carla.Rotation(yaw=yaw)
+class VehicleSpawner(ISpawner):
+    buildSpawnBatch.__doc__ = ISpawner.buildSpawnBatch.__doc__
+    readCSV.__doc__ = ISpawner.readCSV.__doc__
+
+    # -----------------------------------------------------------------------------------------------------------------
+
+    def readCSV(self, file_path: str) -> pd.DataFrame:
+        df = pd.read_csv(file_path)
+        df.replace('None', np.nan, inplace=True)
+
+        # Data verification
+
+        if (['id', 'row', 'col', 'x', 'y', 'yaw', 'vehicle_bp'] != df.columns.tolist()):
+            raise ValueError("CSV file expects: <id,row,col,x,y,yaw,vehicle_bp> columns!")
+
+        return df
+
+    # -----------------------------------------------------------------------------------------------------------------
+
+    def buildSpawnBatch(self, bp_lib: carla.BlueprintLibrary, df: pd.DataFrame) -> typing.List[carla.command.SpawnActor]:
+        batch = []
+
+        for index, row in df.iterrows():
+            # set default values
+            
+            vehicle_bp = np.random.choice(bp_lib.filter(np.random.choice(DEFAULT_CARS_BP)))
+            color = np.random.choice(vehicle_bp.get_attribute('color').recommended_values)
+            yaw = float(np.random.choice(DEFAULT_YAWS))
+
+            # override if CSV specifies concrete values 
+            
+            if not pd.isna(row['vehicle_bp']):
+                vehicle_bp = np.random.choice(bp_lib.filter("vehicle.tesla.model3"))
+            if not pd.isna(row['yaw']):
+                yaw = float(row['yaw'])
+
+            vehicle_bp.set_attribute('color', color)
+
+            # finally, build batch (data validity was already verified in readParkingConfiguration)
+
+            batch.append(
+                carla.command.SpawnActor(
+                    vehicle_bp, 
+                    carla.Transform(
+                        carla.Location(x=float(row['x']), y=float(row['y']), z=1), 
+                        carla.Rotation(yaw=yaw)
+                    )
                 )
             )
-        )
 
-    return batch 
+        return batch
 
-# ---------------------------------------------------------------------------------------------------------------------
+# =====================================================================================================================
 
-def main():
+class StaticAssetSpawner(ISpawner):
+    buildSpawnBatch.__doc__ = ISpawner.buildSpawnBatch.__doc__
+    readCSV.__doc__ = ISpawner.readCSV.__doc__
 
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument(
-        '-c', '--config',
-        default="../../../Town04ParkingSpacePositions.csv",
-        type=str,
-        required=True,
-        help='Input which parking space configuration CSV file should used for filling.'
-    )
-    args = argparser.parse_args()
+    # -----------------------------------------------------------------------------------------------------------------
 
-    # 1. read csv 
+    def readCSV(self, file_path: str) -> pd.DataFrame:
+        df = pd.read_csv(file_path)
+        df.replace('None', np.nan, inplace=True)
 
-    df = readParkingConfiguration(args.config)
-    print(df)
+        # Data verification
 
+        if (['id', 'x', 'y', 'z', 'yaw', 'asset_bp'] != df.columns.tolist()):
+            raise ValueError("CSV file expects: <id,x,y,z,yaw,asset_bp> columns!")
+
+        if df.isna().any().any():
+            raise ValueError("CSV file must not contain <None> entries!")
+        
+        return df
+
+    # -----------------------------------------------------------------------------------------------------------------
+
+    def buildSpawnBatch(self, bp_lib: carla.BlueprintLibrary, df: pd.DataFrame) -> typing.List[carla.command.SpawnActor]:
+        return [
+            carla.command.SpawnActor(
+                bp_lib.find(row['asset_bp']), 
+                carla.Transform(
+                    carla.Location(x=float(row['x']), y=float(row['y']), z=float(row['z'])), 
+                    carla.Rotation(pitch=0, yaw=row['yaw'], roll=0)
+                )
+            ) for index, row in df.iterrows() ]
+
+# =====================================================================================================================
+
+def spawnerFactory(args) -> typing.Tuple[ISpawner, str]:
+    """
+    Creates ISpawner object.
+    """
+    if args.vehicle is not None:
+        return (VehicleSpawner(), args.vehicle)
+    elif args.asset is not None:
+        return (StaticAssetSpawner(), args.asset)
+    else:
+        raise ValueError("Either --vehicle or --asset must be configurated!")
+
+# =====================================================================================================================
+
+def populateWorld(df: pd.DataFrame, spawner: ISpawner) -> None:
+    """
+    Populates the world by building a spawn batch and finally spawning all actors.
+
+    Args:
+        df (pd.DataFrame): (Already validated) CSV file for parking space configuration.
+        spawner (ISpawner): Spawner object that provides interfaces for building spawn batch.
+    """
     try:
-        # 2. setup connection 
+        # 1. setup connection 
 
         client = carla.Client('localhost', 2000)
         client.set_timeout(10.0)
@@ -219,29 +300,71 @@ def main():
         if (not "Town04_Opt" in world.get_map().name):
             raise ValueError("You're not using Town04_Opt! Use <py -3.7 myDynamicWorldEditor --setup-town4opt> first!")
 
-        # 3. build batch for spawning vehicles according to csv
+        # 2. build batch for spawning vehicles according to csv
 
-        batch: typing.List[carla.command.SpawnActor] = buildVehicleSpawnBatch(bp_lib, df)
+        batch: typing.List[carla.command.SpawnActor] = spawner.buildSpawnBatch(bp_lib, df)
 
-        # 4. send request to server to spawn vehicles 
+        # 3. send request to server to spawn vehicles 
 
         responses: typing.List[libcarla.command.Response] = client.apply_batch_sync(batch, True) # Important: sync (we want to fetch the return values!)
         
-        vehicle_ids = [response.actor_id for response in responses if not response.has_error()]
-        conflicts_count = len(responses) - len(vehicle_ids)
+        actor_ids = [response.actor_id for response in responses if not response.has_error()]
+        conflicts_count = len(responses) - len(actor_ids)
 
-        # 5. Run until aborted (CTRL + C)
+        # 4. Run until aborted (CTRL + C)
 
-        print(f"Spawned {len(vehicle_ids)} vehicles with {conflicts_count} conflicts. Press <CTRL + C> to despawn!")
+        print(f"Spawned {len(actor_ids)} actors with {conflicts_count} conflicts. Press <CTRL + C> to despawn!")
 
         while True:
             world.wait_for_tick()
-            time.sleep(5) # relieve cpu load
+            time.sleep(5) # relieve cpu load        
 
     finally:    
         print("About to clean up ...")
-        batch = [carla.command.DestroyActor(vehicle_id) for vehicle_id in vehicle_ids]
+        batch = [carla.command.DestroyActor(actor_id) for actor_id in actor_ids]
         client.apply_batch_sync(batch, False)
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+def main():
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument(
+        '-v', '--vehicle',
+        default=None,
+        type=str,
+        help='Input which parking space configuration CSV file should used for filling.'
+    )
+    argparser.add_argument(
+        '-a', '--asset',
+        default=None,
+        type=str,
+        help='Input which parking space configuration CSV file should used for filling.'
+    )
+    argparser.add_argument(
+        '-oscx', '--openscenario-output',
+        default=False,
+        type=str,
+        help='Information whether word should be populated directly.'
+    )
+    args = argparser.parse_args()
+    
+    # TODO: Use capability of argparser to ensure mutally excusiveness for --asset / --vehicle
+
+    if not args.vehicle is None and args.asset is None:
+        print("Nothing to do!")
+
+    if args.vehicle is not None and args.asset is not None:
+        print("Combination of flag --vehicle (-v) and --asset (-a) not supported!") 
+
+    spawner, file_path = spawnerFactory(args) 
+    
+    df = spawner.readCSV(file_path)
+    print(df)
+
+    if args.openscenario_output:
+        print(spawner.generateOSCX())
+    else:
+        populateWorld(df, spawner)
 
 # ---------------------------------------------------------------------------------------------------------------------
 
