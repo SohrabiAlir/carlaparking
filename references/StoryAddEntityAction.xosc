@@ -5,11 +5,18 @@
     <ParameterDeclaration name="leadingSpeed" parameterType="double" value="5.0"/>
   </ParameterDeclarations>
   <CatalogLocations/>
+  
   <RoadNetwork>
     <LogicFile filepath="Town01"/>
     <SceneGraphFile filepath=""/>
   </RoadNetwork>
+  
+  <!-- Entity Defintion -->
+  
   <Entities>
+  
+    <!-- Entity Definition :: Hero -->
+	
     <ScenarioObject name="hero">
       <Vehicle name="vehicle.lincoln.mkz_2017" vehicleCategory="car">
         <ParameterDeclarations/>
@@ -28,6 +35,9 @@
         </Properties>
       </Vehicle>
     </ScenarioObject>
+	
+	<!-- Entity Definition :: Moving Car -->
+	
     <ScenarioObject name="adversary">
       <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
         <ParameterDeclarations/>
@@ -46,6 +56,9 @@
         </Properties>
       </Vehicle>
     </ScenarioObject>
+	
+	<!-- Entity Definition :: Moving Car2-->
+	
     <ScenarioObject name="adversary2">
       <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
         <ParameterDeclarations/>
@@ -64,6 +77,9 @@
         </Properties>
       </Vehicle>
     </ScenarioObject>
+	
+	<!-- Entity Definition :: Moving Car 3 -->
+	
     <ScenarioObject name="C1">
       <MiscObject mass="500.0" name="static.prop.container" miscObjectCategory="obstacle">
         <ParameterDeclarations/>
@@ -76,10 +92,16 @@
         </Properties>
       </MiscObject>
     </ScenarioObject>
+	
   </Entities>
+  
   <Storyboard>
+  
     <Init>
       <Actions>
+		
+		<!-- Init Environment -->
+		
         <GlobalAction>
           <EnvironmentAction>
             <Environment name="Environment1">
@@ -93,6 +115,9 @@
             </Environment>
           </EnvironmentAction>
         </GlobalAction>
+		
+		<!-- Init: Ego Vehicle -->
+		
         <Private entityRef="hero">
           <PrivateAction>
             <TeleportAction>
@@ -121,6 +146,9 @@
             </ControllerAction>
           </PrivateAction>
         </Private>
+		
+		<!-- Init: Adversary -->
+		
         <Private entityRef="adversary">
           <PrivateAction>
             <TeleportAction>
@@ -131,15 +159,23 @@
           </PrivateAction>
         </Private>
       </Actions>
-    </Init>
+    
+	</Init>
+	
     <Story name="MyStory">
       <Act name="Behavior">
         <ManeuverGroup name="ManeuverSequence" maximumExecutionCount="1">
-          <Actors selectTriggeringEntities="false">
+          
+		  <Actors selectTriggeringEntities="false">
             <EntityRef entityRef="adversary"/>
           </Actors>
+		  
           <Maneuver name="FollowLeadingVehicleManeuver">
+			
+			<!-- Event: Leading Vehicle moves and accellerates -->
+			
             <Event name="LeadingVehicleKeepsVelocity" priority="overwrite">
+			
               <Action name="LeadingVehicleKeepsVelocity">
                 <PrivateAction>
                   <LongitudinalAction>
@@ -152,6 +188,7 @@
                   </LongitudinalAction>
                 </PrivateAction>
               </Action>
+			  
               <StartTrigger>
                 <ConditionGroup>
                   <Condition name="StartConditionLeadingVehicleKeepsVelocity" delay="0" conditionEdge="rising">
@@ -166,8 +203,13 @@
                   </Condition>
                 </ConditionGroup>
               </StartTrigger>
+			  
             </Event>
+			
+			<!-- Event: Leading Vehicle waits -->
+			
             <Event name="LeadingVehicleWaits" priority="overwrite">
+			
               <Action name="LeadingVehicleWaits">
                 <PrivateAction>
                   <LongitudinalAction>
@@ -180,6 +222,7 @@
                   </LongitudinalAction>
                 </PrivateAction>
               </Action>
+			  
               <StartTrigger>
                 <ConditionGroup>
                   <Condition name="AfterLeadingVehicleKeepsVelocity" delay="0" conditionEdge="rising">
@@ -189,7 +232,11 @@
                   </Condition>
                 </ConditionGroup>
               </StartTrigger>
+			  
             </Event>
+			
+			<!-- Event: Add Entity A2 -->
+			
             <Event name="AddEntityA2" priority="overwrite">
               <Action name="AddEntityA2">
                 <GlobalAction>
@@ -202,6 +249,7 @@
                   </EntityAction>
                 </GlobalAction>
               </Action>
+			  
               <StartTrigger>
                 <ConditionGroup>
                   <Condition name="AfterLeadingVehicleTravel" delay="0" conditionEdge="rising">
@@ -216,8 +264,13 @@
                   </Condition>
                 </ConditionGroup>
               </StartTrigger>
+			  
             </Event>
+			
+			<!-- Event: Add Entity C1 -->
+			
             <Event name="AddEntityC1" priority="overwrite">
+			
               <Action name="AddEntityC1">
                 <GlobalAction>
                   <EntityAction entityRef="C1">
@@ -229,6 +282,7 @@
                   </EntityAction>
                 </GlobalAction>
               </Action>
+			  
               <StartTrigger>
                 <ConditionGroup>
                   <Condition name="AfterLeadingVehicleTravel" delay="0" conditionEdge="rising">
@@ -243,9 +297,15 @@
                   </Condition>
                 </ConditionGroup>
               </StartTrigger>
+			  
             </Event>
+			
+			
           </Maneuver>
         </ManeuverGroup>
+		
+		<!-- Story Start -->
+		
         <StartTrigger>
           <ConditionGroup>
             <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
@@ -265,6 +325,9 @@
             </Condition>
           </ConditionGroup>
         </StartTrigger>
+		
+		<!-- Story Termination (even if unexecuted actions exists) -->
+		
         <StopTrigger>
           <ConditionGroup>
             <Condition name="EndCondition" delay="0" conditionEdge="rising">
@@ -279,8 +342,12 @@
             </Condition>
           </ConditionGroup>
         </StopTrigger>
+		
       </Act>
     </Story>
+	
+	<!-- Final EXIT Criteria -->
+	
     <StopTrigger>
       <ConditionGroup>
         <Condition name="criteria_RunningStopTest" delay="0" conditionEdge="rising">
@@ -320,5 +387,6 @@
         </Condition>
       </ConditionGroup>
     </StopTrigger>
+	
   </Storyboard>
 </OpenSCENARIO>
