@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
-# Barcelona (UAB).
-#
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -24,6 +21,9 @@
             -> Loads "Town04_Opt"
             -> Removes already parked vehicle (by removing the corresp. map layer)
             -> Set specatator view above parking space
+
+        --setup-town15 [X,Y,Z]
+            -> Sets spectator view to given (x,y,z)
          
         --load XXX (where XXX is the map name in CARLA, i.e. "Town01", "Town01_Opt", ...)
             -> Loads the corresponding map
@@ -66,6 +66,54 @@ import numpy as np
 import random
 import time
 import argparse
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+def debug(client: carla.Client, world: carla.World):
+    print("About to dispaly debug information ...")
+
+    # Fetch all actors before the scenario start
+
+    actors_before_scenario = world.get_actors()
+
+    print("Please start now the scenario!")
+    input("Press [OK] once all scenario entities are conencted.")
+
+    # Fetch all actors after simulation start to get 
+    
+    actors_after_scenario = world.get_actors()
+
+    if (len(actors_before_scenario) == len(actors_after_scenario)):
+        raise ValueError("No new actor found!")
+
+    scenario_actors = [actor for actor in actors_after_scenario if actor not in actors_before_scenario]
+    
+    # List all new actors and ask which one should be followed
+
+    for actor in scenario_actors:
+        actor_loc = actor.get_location()
+        print(f"[{actor.id}] ({actor.type_id}) @ ({actor_loc.x}, {actor_loc.y}, {actor_loc.z})")
+
+    # Choose relevant actor to track 
+
+    track_actor_id = int(input("Enter [ID] that should be tracked: "))
+    track_actor = [actor for actor in scenario_actors if track_actor_id == actor.id][0] or None
+
+    if track_actor is None:
+        raise ValueError("Given actor ID not found!")
+
+    # Display actor location OnLocationChange
+
+    last_actor_pos = (None, None, None)
+
+    while True:
+        track_actor_loc = track_actor.get_location()
+
+        if last_actor_pos != (track_actor_loc.x, track_actor_loc.y, track_actor_loc.z):
+            print(f'<{track_actor.id}> ({track_actor.type_id}) @ (x={track_actor_loc.x}, y={track_actor_loc.y}, z={track_actor_loc.z})')
+            last_actor_pos = (track_actor_loc.x, track_actor_loc.y, track_actor_loc.z)
+
+        world.wait_for_tick()
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -184,6 +232,38 @@ def town04Setup(client: carla.Client,
 
 # ---------------------------------------------------------------------------------------------------------------------
 
+def town15Setup(client: carla.Client, 
+                world: carla.World, 
+                settings: carla.WorldSettings, 
+                bp_lib: carla.BlueprintLibrary, 
+                spectator: carla.Actor,
+                specatator_coordinates: str):
+    print("About to setup Town15 (setting spectator) ...")
+    
+    # Initial format: [X,Y,Z] => X,Y,Z => x, y, z
+
+    args = specatator_coordinates[1:-1]
+    arg_split = args.split(',')
+
+    if (len(arg_split) != 3):
+        raise ValueError("Invalid Usage of --setup-town15: Use [X,Y,Z] as param value!")
+
+    x, y, z = float(arg_split[0]), float(arg_split[1]), float(arg_split[2])
+   
+    #loadWorld(client=client, world=world, settings=settings, bp_lib=bp_lib, spectator=spectator, request_world_name="Town15")
+
+    # Reassignments (IMPORTANT: loadWorld() recreates .world object =>  prior .world() members will be outdated)
+    settings = world.get_settings()
+    bp_lib = world.get_blueprint_library()
+    spectator = world.get_spectator()
+
+    # Set spectator view to parking space 
+    transform = carla.Transform()
+    transform.location = carla.Location(x=x, y=y, z=z)
+    spectator.set_transform(transform)
+
+# ---------------------------------------------------------------------------------------------------------------------
+
 def loadWorld(client: carla.Client, 
               world: carla.World, 
               settings: carla.WorldSettings, 
@@ -216,6 +296,12 @@ def main():
         '-st04', '--setup-town04opt',
         action='store_true',
         help='Loads the predefined settings for the Town04_Opt setup.'
+    )
+    argparser.add_argument(
+        '-st15', '--setup-town15',
+        type=str,
+        default=None,
+        help='Loads Town15 map sets the specator view to the given [x,y,z] coordinate.'
     )
     argparser.add_argument(
         '-t', '--load',
@@ -272,6 +358,11 @@ def main():
         default=None,
         help='Spawns a cone (static asset). Usage: --spawn-cone-5 [X,Y,Z,YAW]'
     )
+    argparser.add_argument(
+        '-d', '--debug',
+        action='store_true',
+        help='Activates Debug Options'
+    )
 
     args = argparser.parse_args()
 
@@ -296,6 +387,9 @@ def main():
 
         if (args.setup_town04opt):
             town04Setup(client=client, world=world, settings=settings, bp_lib=bp_lib, spectator=spectator)
+
+        if (args.setup_town15 is not None):
+           town15Setup(client=client, world=world, settings=settings, bp_lib=bp_lib, spectator=spectator, specatator_coordinates=args.setup_town15)
         
         if (args.load):
             loadWorld(client=client, 
@@ -331,9 +425,10 @@ def main():
 
         if (args.spawn_cone_5 is not None):
             spawnCone(client=client, bp_lib=bp_lib, cone_type=5, args=args.spawn_cone_5)
-    
-        # TODO: Weather setup ?
 
+        if (args.debug):
+            debug(client=client, world=world)
+    
         # 4. wait a tick just in case (not stricly necessary)
 
         world.wait_for_tick()

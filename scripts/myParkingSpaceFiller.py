@@ -151,7 +151,7 @@ class ISpawner(object):
         """
         raise NotImplementedError("Must be implemented in derived class!")
 
-    def generateOSCX(self, df: pd.DataFrame) -> str:
+    def generateXOSC(self, df: pd.DataFrame) -> typing.Dict[str, str]:
         """
         Generates the corresponding OpenSCENARIO 1.0 code for the entity definitions. 
 
@@ -159,7 +159,7 @@ class ISpawner(object):
             df (pd.DataFrame): (Already validated) CSV file for parking space configuration.
 
         Returns:
-            str: The generated oscx tags that belong within the <Entity> area.
+            typing.Dict[str, str]: Dictionary with the keys {'Entities', 'Init'} that contain the generated openscenario-tags. 
         """
         raise NotImplementedError("Must be implemented in derived class!")
 
@@ -178,8 +178,9 @@ class ISpawner(object):
 # =====================================================================================================================
 
 class VehicleSpawner(ISpawner):
-    buildSpawnBatch.__doc__ = ISpawner.buildSpawnBatch.__doc__
-    readCSV.__doc__ = ISpawner.readCSV.__doc__
+    # buildSpawnBatch.__doc__ = ISpawner.buildSpawnBatch.__doc__
+    # readCSV.__doc__ = ISpawner.readCSV.__doc__
+    # generateXOSC.__doc__ = ISpawner.generateXOSC.__doc__
 
     # -----------------------------------------------------------------------------------------------------------------
 
@@ -187,11 +188,16 @@ class VehicleSpawner(ISpawner):
         df = pd.read_csv(file_path)
         df.replace('None', np.nan, inplace=True)
 
-        # Data verification
+        # Data verification: Necessary columns
 
         if (['id', 'row', 'col', 'x', 'y', 'yaw', 'vehicle_bp'] != df.columns.tolist()):
             raise ValueError("CSV file expects: <id,row,col,x,y,yaw,vehicle_bp> columns!")
 
+        # Data verification: ID must be unique
+
+        if (df['id'].duplicated().any()):
+            raise ValueError(f"CSV file has non-unique ID: <{df[df.duplicated(subset='id', keep=False)]}>!")
+                
         return df
 
     # -----------------------------------------------------------------------------------------------------------------
@@ -229,11 +235,55 @@ class VehicleSpawner(ISpawner):
 
         return batch
 
+    # -----------------------------------------------------------------------------------------------------------------
+
+    def generateXOSC(self, df: pd.DataFrame) -> typing.Dict[str, str]:
+        result = {
+            'Entities': '',
+            'Init': ''
+        }
+
+        for index, row in df.iterrows():
+            result['Entities'] += (
+                "<ScenarioObject name='static_vehicle_{id}'>\n"
+                "  <Vehicle name='{vehicle_bp}' vehicleCategory='car'>\n"
+                "    <ParameterDeclarations/>\n"
+                "    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>\n"
+                "    <BoundingBox>\n"
+                "      <Center x='1.5' y='0.0' z='0.9'/>\n"
+                "      <Dimensions width='2.1' length='4.5' height='1.8'/>\n"
+                "    </BoundingBox>\n"
+                "    <Axles>\n"
+                "      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>\n"
+                "      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>\n"
+                "    </Axles>\n"
+                "    <Properties>\n"
+                "      <Property name='type' value='simulation'/>\n"
+                "    </Properties>\n"
+                "  </Vehicle>\n"
+                "</ScenarioObject>\n"
+            ).format(id=index, vehicle_bp=row['vehicle_bp'])
+
+            result['Init'] += (
+                "<Private entityRef='static_vehicle_{id}'>\n"
+                "  <PrivateAction>\n"
+                "    <TeleportAction>\n"
+                "      <Position>\n"
+                "        <WorldPosition x='{x}' y='{y}' z='0.3' h='{h}'/>\n" 
+                "      </Position>\n"
+                "    </TeleportAction>\n"
+                "  </PrivateAction>\n"
+                "</Private>\n"
+            ).format(id=index, x=row['x'], y=row['y'], h=self._degToRad(row['yaw']))
+
+        return result
+
 # =====================================================================================================================
 
 class StaticAssetSpawner(ISpawner):
-    buildSpawnBatch.__doc__ = ISpawner.buildSpawnBatch.__doc__
-    readCSV.__doc__ = ISpawner.readCSV.__doc__
+    # buildSpawnBatch.__doc__ = ISpawner.buildSpawnBatch.__doc__
+    # readCSV.__doc__ = ISpawner.readCSV.__doc__
+    # generateXOSC.__doc__ = ISpawner.generateXOSC.__doc__
 
     # -----------------------------------------------------------------------------------------------------------------
 
@@ -241,10 +291,17 @@ class StaticAssetSpawner(ISpawner):
         df = pd.read_csv(file_path)
         df.replace('None', np.nan, inplace=True)
 
-        # Data verification
+        # Data verification: Necessary columns
 
         if (['id', 'x', 'y', 'z', 'yaw', 'asset_bp'] != df.columns.tolist()):
             raise ValueError("CSV file expects: <id,x,y,z,yaw,asset_bp> columns!")
+
+        # Data verification: ID must be unique
+
+        if (df['id'].duplicated().any()):
+            raise ValueError("CSV file has non-unique ID: <{row}>!".format(row=df[df.duplicated(subset='id', keep=False)]))
+
+        # Data verification: No 'None' entries
 
         if df.isna().any().any():
             raise ValueError("CSV file must not contain <None> entries!")
@@ -262,6 +319,44 @@ class StaticAssetSpawner(ISpawner):
                     carla.Rotation(pitch=0, yaw=row['yaw'], roll=0)
                 )
             ) for index, row in df.iterrows() ]
+
+    # -----------------------------------------------------------------------------------------------------------------
+
+    def generateXOSC(self, df: pd.DataFrame) -> typing.Dict[str, str]:
+        result = {
+            'Entities': '',
+            'Init': ''
+        }
+
+        for index, row in df.iterrows():
+            result['Entities'] += (
+                "<ScenarioObject name='static_asset_{id}'>\n"
+                "  <MiscObject mass='500.0' name='{asset_bp}' miscObjectCategory='obstacle'>\n"
+                "    <ParameterDeclarations/>\n"
+                "    <BoundingBox>\n"
+                "      <Center x='0' y='0.0' z='0'/>\n"
+                "      <Dimensions width='1.0' length='2.0' height='1.7'/>\n"
+                "    </BoundingBox>\n"
+                "    <Properties>\n"
+                "      <Property name='type' value='simulation'/>\n"
+                "    </Properties>\n"
+                "  </MiscObject>\n"
+                "</ScenarioObject>\n"
+            ).format(id=index, asset_bp=row['asset_bp'])
+
+            result['Init'] += (
+                "<Private entityRef='static_asset_{id}'>\n"
+                "  <PrivateAction>\n"
+                "    <TeleportAction>\n"
+                "      <Position>\n"
+                "        <WorldPosition x='{x}' y='{y}' z='{z}' h='{h}'/>\n"
+                "      </Position>\n"
+                "    </TeleportAction>\n"
+                "  </PrivateAction>\n"
+                "</Private>\n"
+            ).format(id=index, x=row['x'], y=row['y'], z=row['z'], h=self._degToRad(row['yaw']))
+
+        return result
 
 # =====================================================================================================================
 
@@ -341,9 +436,8 @@ def main():
         help='Input which parking space configuration CSV file should used for filling.'
     )
     argparser.add_argument(
-        '-oscx', '--openscenario-output',
-        default=False,
-        type=str,
+        '-xosc', '--openscenario-output',
+        action='store_true',
         help='Information whether word should be populated directly.'
     )
     args = argparser.parse_args()
@@ -362,7 +456,8 @@ def main():
     print(df)
 
     if args.openscenario_output:
-        print(spawner.generateOSCX())
+        xosc_generated = spawner.generateXOSC(df)
+        print("\n{entities}\n{init}\n".format(entities=xosc_generated['Entities'], init=xosc_generated['Init']))
     else:
         populateWorld(df, spawner)
 
