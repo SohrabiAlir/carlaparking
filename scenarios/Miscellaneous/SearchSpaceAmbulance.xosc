@@ -33,12 +33,12 @@
       </Vehicle>
     </ScenarioObject>
 	
-	<ScenarioObject name="adversary">
-      <Pedestrian model="walker.pedestrian.0010" mass="90.0" name="walker.pedestrian.0010" pedestrianCategory="pedestrian"> <!-- TODO: Verify Params -->
+	<ScenarioObject name="pedestrian">
+      <Pedestrian model="walker.pedestrian.0030" mass="90.0" name="walker.pedestrian.0030" pedestrianCategory="pedestrian"> <!-- TODO: Verify Params -->
         <ParameterDeclarations/>
         <BoundingBox>
-          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
-          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
         </BoundingBox>
         <Properties>
           <Property name="type" value="simulation"/>
@@ -47,7 +47,7 @@
     </ScenarioObject>
 	
 	<ScenarioObject name="parked">
-      <Vehicle name="vehicle.citroen.c3" vehicleCategory="car">
+      <Vehicle name="vehicle.ford.ambulance" vehicleCategory="car">
         <ParameterDeclarations/>
         <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
         <BoundingBox>
@@ -121,11 +121,11 @@
         </Private>
 		
 		<!-- 1.3. Init NPC Pedestrian -->
-        <Private entityRef="adversary">
+        <Private entityRef="pedestrian">
           <PrivateAction>
             <TeleportAction>
               <Position>
-                <WorldPosition x="293" y="-236" z="0.3" h="1.57079632679"/> 
+                <WorldPosition x="290" y="-224" z="0.3" h="1.57079632679"/> 
               </Position>
             </TeleportAction>
           </PrivateAction>
@@ -136,7 +136,7 @@
           <PrivateAction>
             <TeleportAction>
               <Position>
-                <WorldPosition x="290" y="-235.9" z="0.3" h="3.1415926"/> 
+                <WorldPosition x="290.7" y="-230.1" z="0.3" h="4.7123889"/> 
               </Position>
             </TeleportAction>
           </PrivateAction>
@@ -153,112 +153,40 @@
 		  
 		  <!-- TODO: What is htis ??? -->
 		  <Actors selectTriggeringEntities="false">
-            <EntityRef entityRef="adversary"/>
+            <EntityRef entityRef="pedestrian"/>
           </Actors>
 		  
 		  <!-- 2.1. Behaviour -->
-		  <Maneuver name="ChildSuicideAttempt">
+		  <Maneuver name="NPCWaiting">
 		  
 		    <!-- EVENT: CHILD STARTS RUNNING -->
 			
-		    <Event name="ChildStartsRunning" priority="overwrite">
+		    <Event name="NPCWaiting" priority="overwrite">
 			
-			  <Action name="ChildStartsRunning">
+			  <Action name="NPCWaits">
                 <PrivateAction>
                   <LongitudinalAction>
                     <SpeedAction>
-                      <SpeedActionDynamics dynamicsShape="step" value="2" dynamicsDimension="distance"/>
+                      <SpeedActionDynamics dynamicsShape="step" value="15" dynamicsDimension="time"/>
                       <SpeedActionTarget>
-                        <AbsoluteTargetSpeed value="10.0"/>
+                        <AbsoluteTargetSpeed value="0"/>
                       </SpeedActionTarget>
                     </SpeedAction>
                   </LongitudinalAction>
                 </PrivateAction>
               </Action>
 			  
-			  <StartTrigger> <!-- Pedestrian starts moving once the car achieved certain coordinates -->
-                <ConditionGroup>
-                  <Condition name="StartCondition" delay="0" conditionEdge="rising">
-                    <ByEntityCondition>
-                      <TriggeringEntities triggeringEntitiesRule="any">
-                        <EntityRef entityRef="hero"/>
-                      </TriggeringEntities>
-                      <EntityCondition>
-                        <ReachPositionCondition tolerance="1.5">
-                          <Position>
-                            <WorldPosition x="290" y="-233.2" z="0.3" h="0"/> 
-                          </Position>
-                        </ReachPositionCondition>
-                      </EntityCondition>
-                    </ByEntityCondition>
-                  </Condition>
-                </ConditionGroup>
-              </StartTrigger>
+			  <StartTrigger>
+				<ConditionGroup>
+					<Condition name="ImmediateStartCondition" delay="0" conditionEdge="rising">
+						<ByValueCondition>
+							<SimulationTimeCondition value="0" rule="greaterThan"/>
+						</ByValueCondition>
+					</Condition>
+				</ConditionGroup>
+			</StartTrigger>
 			  
 			</Event>
-			
-			<!-- EVENT: CHILD WAITS -->
-			
-			<Event name="ChildWaitsToDie" priority="overwrite">
-			  
-			  <Action name="ChildWaitsToDie">
-                <PrivateAction>
-                  <LongitudinalAction>
-                    <SpeedAction>
-                      <SpeedActionDynamics dynamicsShape="step" value="5" dynamicsDimension="time"/>
-                      <SpeedActionTarget>
-                        <AbsoluteTargetSpeed value="0.0"/>
-                      </SpeedActionTarget>
-                    </SpeedAction>
-                  </LongitudinalAction>
-                </PrivateAction>
-              </Action>
-			  
-			  <StartTrigger> <!-- Pedestrian must have finished PedstrianStartsWalking state -->
-                <ConditionGroup>
-                  <Condition name="AfterChildStartsRunning" delay="0" conditionEdge="rising">
-                    <ByValueCondition>
-                      <StoryboardElementStateCondition storyboardElementType="action" 
-					                                   storyboardElementRef="ChildStartsRunning" 
-													   state="completeState"/>
-                    </ByValueCondition>
-                  </Condition>
-                </ConditionGroup>
-              </StartTrigger>
-			  
-			</Event>
-			
-			<!-- EVENT: CHILD WALKS OF -->
-			
-			<Event name="ChildWalksOf" priority="overwrite">
-				
-			  <Action name="ChildWalksOf">
-                <PrivateAction>
-                  <LongitudinalAction>
-                    <SpeedAction>
-                      <SpeedActionDynamics dynamicsShape="step" value="1.5" dynamicsDimension="distance"/>
-                      <SpeedActionTarget>
-                        <AbsoluteTargetSpeed value="10.0"/>
-                      </SpeedActionTarget>
-                    </SpeedAction>
-                  </LongitudinalAction>
-                </PrivateAction>
-              </Action>
-			  
-			  <StartTrigger> <!-- Pedestrian must have finished PedstrianStartsWalking state -->
-                <ConditionGroup>
-                  <Condition name="AfterChildWaitsToDie" delay="0" conditionEdge="rising">
-                    <ByValueCondition>
-                      <StoryboardElementStateCondition storyboardElementType="action" 
-					                                   storyboardElementRef="ChildWaitsToDie" 
-													   state="completeState"/>
-                    </ByValueCondition>
-                  </Condition>
-                </ConditionGroup>
-              </StartTrigger>
-			  
-			</Event>
-		    
 		  </Maneuver>
 		  
 		</ManeuverGroup>

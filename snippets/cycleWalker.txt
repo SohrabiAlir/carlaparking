@@ -1,0 +1,1353 @@
+<?xml version="1.0"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2020-03-24T12:00:00" description="CARLA:SpawnTest" author=""/>
+  <ParameterDeclarations/>
+  <CatalogLocations/>
+
+  <!-- Notes for Cycle: AssignPath has not a reliable "completeState", alsways use ReachPosition Conditions -->
+  <!-- ReachPosition Conditions: SET TOLLERANCE HIGH ENOUGH (>= 1.0), otherwise Condition woun't be true (even if it's a point in the Waypoint Path!!)-->
+  <!-- Define Road -->
+
+  <RoadNetwork>
+    <LogicFile filepath="Town04_Opt"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+
+  <!-- Define Entities -->
+
+  <Entities>
+    
+    <ScenarioObject name="hero">
+      <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+    <ScenarioObject name="walker_1">
+      <Pedestrian model="walker.pedestrian.0030" mass="90.0" name="walker.pedestrian.0030" pedestrianCategory="pedestrian">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+
+    <ScenarioObject name="walker_2">
+      <Pedestrian model="walker.pedestrian.0030" mass="90.0" name="walker.pedestrian.0030" pedestrianCategory="pedestrian">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+
+
+    <!-- TEST: 294.51,-235.75,0.2,0,static.prop.constructioncone  -->
+
+    <ScenarioObject name='static_asset_0'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_1'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_2'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_3'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_4'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_5'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_6'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_7'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_8'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_9'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_10'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_11'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_12'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_13'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_14'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_15'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_16'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_17'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_18'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_19'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_20'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_21'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_22'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_23'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_24'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_25'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_26'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_27'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_28'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_29'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_30'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_31'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_32'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_33'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_34'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_35'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_36'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_37'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_38'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_39'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_40'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_41'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_42'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_43'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_44'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_45'>
+      <MiscObject mass='500.0' name='static.prop.constructioncone' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+    <ScenarioObject name='static_asset_46'>
+      <MiscObject mass='500.0' name='static.prop.trafficwarning' miscObjectCategory='obstacle'>
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x='0' y='0.0' z='0'/>
+          <Dimensions width='1.0' length='2.0' height='1.7'/>
+        </BoundingBox>
+        <Properties>
+          <Property name='type' value='simulation'/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+
+  </Entities>
+
+  <Storyboard>
+    <Init>
+      <Actions>
+
+        <!-- Init Environment -->
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2019-06-25T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.85" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="dry" intensity="0.0"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+
+        <!-- Init Hero -->
+        <Private entityRef="hero">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="130" y="55" z="0" h="3.14159265359"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="false"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- Init Walker -->
+
+        <Private entityRef="walker_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="295.5" y="-233.12" z="0.7" h="1.5707963"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+
+        <Private entityRef="walker_2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="296.0" y="-227.72" z="0.7" h="1.5707963"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+
+        <!-- TEST: 294.51,-235.75,0.2,0,static.prop.constructioncone  -->
+        
+        <Private entityRef='static_asset_0'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-235.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_1'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-232.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_2'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-229.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_3'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-226.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_4'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-223.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_5'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-220.17' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_6'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='293.51' y='-235.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_7'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='293.51' y='-232.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_8'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='293.51' y='-229.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_9'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='293.51' y='-226.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_10'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='293.51' y='-223.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_11'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='293.51' y='-220.17' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_12'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='292.51' y='-235.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_13'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='292.51' y='-232.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_14'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='292.51' y='-229.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_15'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='292.51' y='-226.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_16'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='292.51' y='-223.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_17'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='292.51' y='-220.17' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_18'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='291.51' y='-235.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_19'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='291.51' y='-232.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_20'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='291.51' y='-229.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_21'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='291.51' y='-226.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_22'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='291.51' y='-223.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_23'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='291.51' y='-220.17' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_24'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='290.51' y='-235.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_25'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='290.51' y='-232.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_26'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='290.51' y='-229.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_27'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='290.51' y='-226.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_28'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='290.51' y='-223.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_29'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='290.51' y='-220.17' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_30'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='289.51' y='-235.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_31'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='289.51' y='-232.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_32'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='289.51' y='-229.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_33'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='289.51' y='-226.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_34'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='289.51' y='-223.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_35'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='289.51' y='-220.17' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_36'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-234.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_37'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-231.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_38'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-228.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_39'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-225.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_40'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-222.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_41'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-233.75' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_42'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-230.77' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_43'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-227.52' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_44'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-224.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_45'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='294.51' y='-221.4' z='0.2' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+        <Private entityRef='static_asset_46'>
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x='280.5' y='-236.17' z='0.3' h='0.0'/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+
+      </Actions>
+    </Init>
+
+    <!-- Define Story -->
+
+    <Story name="MyStory">
+
+      <Act name="PoliceManLoopWalkingAct">
+
+        <ManeuverGroup maximumExecutionCount="5" name="ManeuverSequence">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="walker_1"/>
+          </Actors>
+          <Maneuver name="PoliceManLoopWalkingManeuver">
+
+            <!-- A: destination   <WorldPosition x="296.0" y="-210.77" z="0.7"/> -->
+            <!-- B: spawn point   <WorldPosition x="295.5" y="-233.12" z="0.7" h="1.5707963"/> -->
+
+            <!-- EVENT: Walk to Point A (currently in point B) -->
+
+            <Event name="MoveToA" priority="overwrite">
+
+              <Action name="FaceDirectionOfA">
+                <PrivateAction>
+                  <TeleportAction>
+                    <Position>
+                      <WorldPosition x="295.5" y="-233.12" z="0.7" h="1.5707963"/>
+                    </Position>
+                  </TeleportAction>
+                </PrivateAction>
+              </Action>
+              
+              <Action name="AssignPathA">
+                <PrivateAction>
+                  <RoutingAction>
+                    <AssignRouteAction>
+                      <Route name="RouteBToA" closed="false">
+                       <Waypoint routeStrategy="shortest">
+                          <Position>
+                              <WorldPosition x="295.5" y="-232.12" z="0.7"/>
+                          </Position>
+                        </Waypoint>
+                        <Waypoint routeStrategy="shortest">
+                          <Position>
+                              <WorldPosition x="296.0" y="-210.77" z="0.7"/>
+                          </Position>
+                        </Waypoint>
+                      </Route>
+                    </AssignRouteAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+
+              <Action name="StartWalkingToPointB">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="5" dynamicsDimension="distance"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0.8"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+
+              <StartTrigger>
+                <ConditionGroup>
+                <!-- TODO: BUG: This condition is doesn't lead to a trigger signal (no cycle, only going form B to A to B but not back to A)-->
+                  <Condition name="ReachedPointB" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="walker_1"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                         <ReachPositionCondition tolerance="5.0">
+                            <Position>
+                               <WorldPosition x="295.5" y="-233.12" z="0.7"/> <!-- spawn point-->
+                            </Position>
+                         </ReachPositionCondition>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+                <ConditionGroup>
+                  <Condition name="OverallImmedateStartCondition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+
+            </Event>
+
+            <!-- EVENT: Walk to Point B (currently in point A) -->
+
+            <Event name="MoveToB" priority="overwrite">
+
+              <Action name="FaceDirectionOfB">
+                <PrivateAction>
+                  <TeleportAction>
+                    <Position>
+                      <WorldPosition x="296.0" y="-210.77" z="0.7" h="3.1415926"/>
+                    </Position>
+                  </TeleportAction>
+                </PrivateAction>
+              </Action>
+              
+              <Action name="AssignPathB"> <!-- ISSUE: Somehow this terminates to early :( -->
+                <PrivateAction>
+                  <RoutingAction>
+                    <AssignRouteAction>
+                      <Route name="RouteAToB" closed="false">
+                       <Waypoint routeStrategy="shortest">
+                          <Position>
+                              <WorldPosition x="295.5" y="-232.12" z="0.7"/>
+                          </Position>
+                        </Waypoint>
+                        <Waypoint routeStrategy="shortest">
+                          <Position>
+                              <WorldPosition x="295.5" y="-233.12" z="0.7"/>
+                          </Position>
+                        </Waypoint>
+                      </Route>
+                    </AssignRouteAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+
+              <Action name="StartWalking">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="5" dynamicsDimension="distance"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0.8"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="ReachedPointA" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="walker_1"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                         <ReachPositionCondition tolerance="1.0"> <!-- Tolerance important! -->
+                            <Position>
+                               <WorldPosition x="296.0" y="-210.77" z="0.7"/>
+                            </Position>
+                         </ReachPositionCondition>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+
+            </Event>
+
+            <Event name="DoNothing" priority="overwrite">
+
+              <Action name="DoNothing">
+                <!-- Do Nothing -->
+              </Action>
+
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="ReachedPointB" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="walker_1"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                         <ReachPositionCondition tolerance="0.1">
+                            <Position>
+                               <WorldPosition x="295.5" y="-233.12" z="0.7"/>
+                            </Position>
+                         </ReachPositionCondition>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+            </Event>
+
+
+          </Maneuver>
+        </ManeuverGroup>
+
+        <!-- Act Starting -->
+
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallImmedateStartCondition" delay="0" conditionEdge="rising">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+      
+      </Act>
+    </Story>
+  
+    <!-- Define final EXIT Criteria -->
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>
