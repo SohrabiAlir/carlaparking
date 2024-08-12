@@ -21,7 +21,7 @@
 > py -3.7 scenario_runner.py --openscenario TestingAutonomousParking/scenarios/FILENAME.xosc --json
 > ```
 
-Example: `py -3.7 scenario_runner.py --openscenario TestingAutonomousParking/scenarios/PlayfulChild.xosc --json`
+Example: `py -3.7 scenario_runner.py --openscenario TestingAutonomousParking/scenarios/PlayfulChild/.PlayfulChildParkInReverseTown04.xosc --json`
 
 **2. Connect with Ego Vehicle**: Execute `manual_drive.py` (from root Scenario Runner directory!)
 > ```
@@ -51,9 +51,9 @@ Following custom extensions (see `integrate` directory) were added:
 
 ## Scenario Groups
 
-**[PlayfulChild](PlayfulChild.md)** — During a park-in/park-out maneuver, a child suddenly runs into the vehicle's path, necessitating an emergency brake.
+**PlayfulChild** — During a park-in/park-out maneuver, a child suddenly runs into the vehicle's path, necessitating an emergency brake.
 
-**[OpposingTraffic](ParkInWaitForOppositeTraffic.md)** — Waiting for oncoming traffic to clear before starting the park-in/park-out maneuver.
+**OpposingTraffic** — Waiting for oncoming traffic to clear before starting the park-in/park-out maneuver.
 
 **SurroundingPedestrians** — During the park-in/park-out maneuver, numerous pedestrians are moving near the car, with some crossing into the vehicle's path.
 
@@ -68,7 +68,7 @@ Following custom extensions (see `integrate` directory) were added:
 
 | Scenario |
 | -------- |
-| Test     |
+| TODO     |
 
 </details>
 
@@ -78,7 +78,7 @@ Following custom extensions (see `integrate` directory) were added:
 
 | Scenario |
 | -------- |
-| Test     |
+| TODO     |
 
 </details>
 
@@ -88,7 +88,7 @@ Following custom extensions (see `integrate` directory) were added:
 
 | Scenario |
 | -------- |
-| Test     |
+| TODO     |
 
 
 </details>
@@ -98,6 +98,6 @@ Following custom extensions (see `integrate` directory) were added:
 
 | Scenario |
 | -------- |
-| Test     |
+| TODO     |
 
 </details>
