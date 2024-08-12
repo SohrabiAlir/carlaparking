@@ -1,6 +1,6 @@
 # Scenarios for Testing Autonomous Parking
 
-**⚠️ Work in Progress ⚠️** (Last Update: 04.08.24)
+**⚠️ Work in Progress ⚠️** (Last Update: 12.08.24)
 
 > **NOTE**: The parent folder `TestingAutonomousParking` is supposed to be directly located inside `scenario_runner-0.9.15` folder (root directory). Otherwise all links are broken!
 
@@ -45,13 +45,59 @@ See [Scenario Runner Docs: OpenSCENARIO Support](../../Docs/openscenario_support
 
 Following custom extensions (see `integrate` directory) were added:
 - `criteria_CustomFinallyInTargetArea`: Allows specifying a testing criteria that passes if the specified actor is within a defined rectangle given by min_x, max_x, min_y, max_y. 
+- `criteria_CustomFinallyNotInTargetArea`: Analogous to criteria_CustomFinallyInTargetArea, but negated condition for passing. 
 
 </details>
 
-## Scenario Overview
+## Scenario Groups
 
-**[PlayfulChild](PlayfulChild.md)** — During reversing parking maneuver, child suddenly runs into the vehicle's rear path.
+**[PlayfulChild](PlayfulChild.md)** — During a park-in/park-out maneuver, a child suddenly runs into the vehicle's path, necessitating an emergency brake.
 
-**ParkOutRace** — As soon as as parking out maneuver starts, another car simultaneously starts to park out, but faster.
+**[OpposingTraffic](ParkInWaitForOppositeTraffic.md)** — Waiting for oncoming traffic to clear before starting the park-in/park-out maneuver.
 
-**ParkOutCyclist** — Requires to wait for cyclist until performing park-out maneuvers.
+**SurroundingPedestrians** — During the park-in/park-out maneuver, numerous pedestrians are moving near the car, with some crossing into the vehicle's path.
+
+**TrafficConeMarkings** — Requires disregarding the existing line markings and using the traffic cones as reference points to identify the parking space slots.
+
+**Miscellaneous** — Scenarios that don't belong into a specific category.
+
+## Scenario Application
+
+<details>
+<summary> Parkin Maneuver </summary>
+
+| Scenario |
+| -------- |
+| Test     |
+
+</details>
+
+
+<details>
+<summary> Parkout Maneuver </summary>
+
+| Scenario |
+| -------- |
+| Test     |
+
+</details>
+
+<details>
+<summary> Park Search </summary>
+
+
+| Scenario |
+| -------- |
+| Test     |
+
+
+</details>
+
+<details>
+<summary> Other </summary>
+
+| Scenario |
+| -------- |
+| Test     |
+
+</details>

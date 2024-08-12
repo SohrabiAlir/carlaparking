@@ -10,7 +10,7 @@ While the ego vehicle executes a reverse parking maneuver, a child abruptly runs
 
 | Key Figure        | Value                       |
 | ----------------- | --------------------------- |
-| Timeout           | TODO                        |
+| Time Limit        | 30s                         |
 | Map               | `Town04_Opt`                |
 | Weather           | cloudy, wet                 |
 | Ego Vehicle       | `vehicle.mercedes.sprinter` |
@@ -18,9 +18,15 @@ While the ego vehicle executes a reverse parking maneuver, a child abruptly runs
 
 ## Scenario Test Aspects
 
+The scenario test is considered successful, if the ego vehicle breaks to avoid a collission with the child and finally reaches the dedicated parking slot area.
+
 - `criteria_CollisionTest`: Avoid any kind of collission (especially with the child).
-- `TODO`: Successfully park within the dedicated space.
+- `criteria_CustomFinallyInTargetArea`: Ego vehicle is inside the dedicated parking slot at scenario end.
 
 ## Scenario Overview
 
+TODO.
+
 ## Scenario Model
+
+TODO.
