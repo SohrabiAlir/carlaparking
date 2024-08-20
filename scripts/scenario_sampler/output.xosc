@@ -148,7 +148,7 @@
           <PrivateAction>
             <TeleportAction>
               <Position>
-                <WorldPosition x="286.4" y="-223.09327008267113" z="0.3" h="-1.5707"/> 
+                <WorldPosition x="286.4" y="-205.0" z="0.3" h="-1.5707"/> 
               </Position>
             </TeleportAction>
           </PrivateAction>
@@ -160,7 +160,7 @@
           <PrivateAction>
             <TeleportAction>
               <Position>
-                <WorldPosition x="291.4" y="-233.94247370216527" z="0.3" h="0.01"/> 
+                <WorldPosition x="291.4" y="-230.5" z="0.3" h="0.01"/> 
               </Position>
             </TeleportAction>
           </PrivateAction>
@@ -170,7 +170,7 @@
           <PrivateAction>
             <TeleportAction>
               <Position>
-                <WorldPosition x="290.8" y="-227.70053957803458" z="0.3" h="-0.1"/> 
+                <WorldPosition x="290.8" y="-223.5" z="0.3" h="-0.1"/> 
               </Position>
             </TeleportAction>
           </PrivateAction>
@@ -228,7 +228,7 @@
                     <SpeedAction>
                       <SpeedActionDynamics dynamicsShape="step" value="20" dynamicsDimension="time"/>
                       <SpeedActionTarget>
-                        <AbsoluteTargetSpeed value="2.0847093468166795"/>
+                        <AbsoluteTargetSpeed value="10.0"/>
                       </SpeedActionTarget>
                     </SpeedAction>
                   </LongitudinalAction>

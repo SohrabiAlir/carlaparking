@@ -13,16 +13,44 @@ def replace_params(input_file, output_file, replacements):
     with open(output_file, 'w') as file:
         file.write(file_content)
 
-    print(f"Replaced parameters and saved to {output_file}")
+    print(f"scenario created and saved to {output_file}")
+
+
+
+param_gap = np.random.normal(5.5, 3)
+param_bias = np.random.normal(0, 0.5)
+param_distance = np.random.uniform(0, 10)
+param_velocity = np.random.uniform(0.5, 10)
+
+np.random.uniform(0.5, 10)
+
+
+parser = argparse.ArgumentParser(description="Designs a scenario based on given arguments in a scenario file.")
+
+
+parser.add_argument('--gap', type=float, default=param_gap, help='the gab between the left and right car')
+parser.add_argument('--bias', type=float, default=param_bias, help='shift of two cars twoard one side (skewed paarkingg space)')
+parser.add_argument('--distance', type=float, default=param_distance, help='initial distance of the cyclist')
+parser.add_argument('--velocity', type=float, default=param_velocity, help='velocity of the approaching cyclict')
+
+args = parser.parse_args()
+
+
+
+
+dep_right_bias = -229 + args.bias + args.gap/2
+dep_left_bias = -229 + args.bias - args.gap/2
+dep_bike = -225 + args.distance
+
 
 input_file = 'raw.xosc'
 output_file = 'output.xosc'
 
 replacements = {
-    'PARAM_1': -221 + np.random.normal(0, 10),
-    'PARAM_2': -233 + np.random.normal(0, 1),
-    'PARAM_3': -226 + np.random.normal(0, 1),
-    'PARAM_4': np.random.uniform(0.5, 10)
+    'PARAM_1': dep_bike,
+    'PARAM_2': dep_left_bias,
+    'PARAM_3': dep_right_bias,
+    'PARAM_4': args.velocity
 }
 
 replace_params(input_file, output_file, replacements)
