@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2020-03-24T12:00:00" description="CARLA:XYZ" author=""/>
+  <ParameterDeclarations/>
+  <CatalogLocations/>
+
+<!-- Define Map -->
+
+  <RoadNetwork>
+    <LogicFile filepath="Town04_Opt"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+ 
+<!-- Define Entities -->
+  
+  <Entities>
+	
+	<ScenarioObject name="hero">
+      <Vehicle name="vehicle.dodge.charger_2020" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="left">
+      <Vehicle name="vehicle.nissan.micra" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
+          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/> <!-- TODO: Verify Params -->
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/> <!-- TODO: Verify Params -->
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="advasary">
+      <Vehicle name="vehicle.citroen.c3" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
+          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/> <!-- TODO: Verify Params -->
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/> <!-- TODO: Verify Params -->
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="right">
+      <Vehicle name="vehicle.volkswagen.t2" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
+          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/> <!-- TODO: Verify Params -->
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/> <!-- TODO: Verify Params -->
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="garbage_container">
+      <MiscObject mass="500.0" name="static.prop.container" miscObjectCategory="obstacle">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="-1.0" y="0.0" z="0.85"/>
+          <Dimensions width="1.0" length="2.0" height="1.7"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+	
+	<ScenarioObject name="cardboardbox_1">
+      <MiscObject mass="1" name="static.prop.creasedbox03" miscObjectCategory="patch">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="-1.0" y="0.0" z="0.85"/>
+          <Dimensions width="1.0" length="2.0" height="1.7"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+	
+	<ScenarioObject name="cardboardbox_2">
+      <MiscObject mass="1" name="static.prop.creasedbox02" miscObjectCategory="patch">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="-1.0" y="0.0" z="0.85"/>
+          <Dimensions width="1.0" length="2.0" height="1.7"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+	
+	<ScenarioObject name="cardboardbox_3">
+      <MiscObject mass="1" name="static.prop.creasedbox01" miscObjectCategory="patch">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="-1.0" y="0.0" z="0.85"/>
+          <Dimensions width="1.0" length="2.0" height="1.7"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+	
+	<ScenarioObject name="garbage_1">
+      <MiscObject mass="500" name="static.prop.garbage06" miscObjectCategory="roadMark">
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="-1.0" y="0.0" z="0.85"/>
+          <Dimensions width="1.0" length="2.0" height="1.7"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </MiscObject>
+    </ScenarioObject>
+	
+	<ScenarioObject name="walker_1">
+      <Pedestrian model="walker.pedestrian.0029" mass="90.0" name="walker.pedestrian.0029" pedestrianCategory="pedestrian"> <!-- TODO: Verify Params -->
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> 
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+	
+	<ScenarioObject name="walker_2">
+      <Pedestrian model="walker.pedestrian.0007" mass="90.0" name="walker.pedestrian.0007" pedestrianCategory="pedestrian"> <!-- TODO: Verify Params -->
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> 
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+	
+  </Entities>
+
+<!-- Define Story -->
+  
+  <Storyboard>
+  
+   <!-- 1. Define Initial -->
+   
+    <Init>
+      <Actions>
+	  
+	  	<!-- 1.1. Init Environment -->
+		
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2019-06-25T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.35" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="rain" intensity="0.2"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+	
+        <!-- 1.2. Init Ego Vehicle -->
+		
+        <Private entityRef="hero">
+        
+		 <PrivateAction>
+            <TeleportAction> 
+              <Position>
+                <WorldPosition x="303.9" y="-192.6" z="0.3" h="-1.5707"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+
+          <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="0"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+
+			</PrivateAction>
+        </Private>
+				
+		<!-- 1.3. Init Car -->
+		
+		<Private entityRef="advasary">
+		  
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+			    <WorldPosition x="286.3" y="-222.6" z="0.3" h="-1.5707"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+		  
+		  <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="AdversaryAgent">
+                  <Properties>
+                    <Property name="module" value="npc_vehicle_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="false"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+		  
+        </Private>
+		
+		<!-- 1.3. Static Props -->
+		
+		<Private entityRef="garbage_container">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="294" y="-209" z="0.3" h="-1.5707"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<Private entityRef="cardboardbox_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="298.02" y="-203" z="0.3" h="1.7"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<Private entityRef="cardboardbox_2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="296" y="-206" z="0.3" h="1.7"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<Private entityRef="cardboardbox_3">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="299.87" y="-204.4" z="0.3" h="3"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<Private entityRef="garbage_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="296.6" y="-204.4" z="0.3" h="3"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<!-- Walker -->
+		
+		<Private entityRef="walker_1">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="294.8" y="-207" z="0.3" h="4.712388"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<Private entityRef="walker_2">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="289.3" y="-196.8" z="0.3" h="5.2"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<!-- 1.4. Init Parked Car -->
+		
+		<Private entityRef="left">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="298.12" y="-201.18" z="0.3" h="0.01"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<Private entityRef="right">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="298.42" y="-207.3" z="0.3" h="3.14159"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+      </Actions>
+    </Init>
+    
+	<!-- 2. STORY -->
+	
+    <Story name="MyStory">
+	
+	  <Act name="Walker2Behaviour">
+		<ManeuverGroup maximumExecutionCount="1" name="ManeuverSequence">
+		  
+		  <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="walker_2"/>
+          </Actors>
+		  
+		  <Maneuver name="Walker2Maneuver">
+		  
+			  <Event name="StartWalking" priority="overwrite">
+			  
+				<!-- Then: Start Walking -->
+				
+				<Action name="Walker2StartsWalking">
+				  <PrivateAction>
+					<LongitudinalAction>
+					  <SpeedAction>
+						<SpeedActionDynamics dynamicsShape="step" value="10" dynamicsDimension="distance"/>
+						<SpeedActionTarget>
+						  <AbsoluteTargetSpeed value="0.833"/>
+						</SpeedActionTarget>
+					  </SpeedAction>
+					</LongitudinalAction>
+				  </PrivateAction>
+				</Action>
+				
+				<!-- Start Condition: Reach certan distance -->
+				
+				<StartTrigger>
+				  <ConditionGroup>
+				    <Condition name="StartCondition" delay="0" conditionEdge="rising">
+				  	  <ByEntityCondition>
+				  	    <TriggeringEntities triggeringEntitiesRule="any">
+				  		  <EntityRef entityRef="hero"/>
+				  	    </TriggeringEntities>
+				  	    <EntityCondition>
+				  	      <RelativeDistanceCondition entityRef="walker_2" relativeDistanceType="cartesianDistance" value="20" freespace="false" rule="lessThan"/>
+				  	    </EntityCondition>
+				  	  </ByEntityCondition>
+				    </Condition>
+				  </ConditionGroup>
+				</StartTrigger>
+				  
+			  </Event>
+			  
+			  
+              <Event name="Wait" priority="overwrite">
+			  
+			    <Action name="Walker2Waits">
+				  <PrivateAction>
+					<LongitudinalAction>
+					  <SpeedAction>
+						<SpeedActionDynamics dynamicsShape="step" value="15" dynamicsDimension="time"/>
+						<SpeedActionTarget>
+						  <AbsoluteTargetSpeed value="0"/>
+						</SpeedActionTarget>
+					  </SpeedAction>
+					</LongitudinalAction>
+				  </PrivateAction>
+				</Action>
+								
+			    <StartTrigger> <!-- Pedestrian must have finished PedstrianStartsWalking state -->
+                  <ConditionGroup>
+                    <Condition name="AfterWalker2StartsWalking" delay="0" conditionEdge="rising">
+                      <ByValueCondition>
+                        <StoryboardElementStateCondition storyboardElementType="action" storyboardElementRef="Walker2StartsWalking" state="completeState"/>
+                      </ByValueCondition>
+                    </Condition>
+                  </ConditionGroup>
+                </StartTrigger>
+			  
+		  	  </Event>
+			  
+		  </Maneuver>
+	    </ManeuverGroup>
+		
+		<!-- Overall Act Start -->
+		
+		<StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="1"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+		
+	  </Act>
+	  
+	  <!-- Behaviour of Walker 1 -->
+	  
+	  <Act name="Walker1Behaviour">
+		<ManeuverGroup maximumExecutionCount="1" name="ManeuverSequence">
+		  
+		  <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="walker_1"/>
+          </Actors>
+		  
+		  <Maneuver name="PedestrianCrossingManeuver">
+		  
+			  <Event name="StartWalking" priority="overwrite">
+			  
+				<!-- First: Orientation into walking direction -->
+				
+				<Action name="Walker1FacesDirectionToWalk">
+				  <PrivateAction>
+					<TeleportAction>
+					  <Position>
+						<WorldPosition x="294.8" y="-207" z="0.5" h="1.5707963"/> 
+					  </Position>
+					</TeleportAction>
+				  </PrivateAction>
+				</Action>
+			
+				<!-- Then: Start Walking -->
+				
+				<Action name="Walker1StartsWalking">
+				  <PrivateAction>
+					<LongitudinalAction>
+					  <SpeedAction>
+						<SpeedActionDynamics dynamicsShape="step" value="5" dynamicsDimension="distance"/>
+						<SpeedActionTarget>
+						  <AbsoluteTargetSpeed value="0.833"/>
+						</SpeedActionTarget>
+					  </SpeedAction>
+					</LongitudinalAction>
+				  </PrivateAction>
+				</Action>
+				
+				<!-- Start Condition: Reach certan distance -->
+				
+				<StartTrigger>
+				  <ConditionGroup>
+				    <Condition name="StartCondition" delay="0" conditionEdge="rising">
+				  	  <ByEntityCondition>
+				  	    <TriggeringEntities triggeringEntitiesRule="any">
+				  		  <EntityRef entityRef="hero"/>
+				  	    </TriggeringEntities>
+				  	    <EntityCondition>
+				  	      <RelativeDistanceCondition entityRef="walker_1" relativeDistanceType="cartesianDistance" value="7.5" freespace="false" rule="lessThan"/>
+				  	    </EntityCondition>
+				  	  </ByEntityCondition>
+				    </Condition>
+				  </ConditionGroup>
+				</StartTrigger>
+				  
+			  </Event>
+			  
+		  </Maneuver>
+	    </ManeuverGroup>
+		
+		<!-- Overall Act Start -->
+		
+		<StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="1"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+		
+	  </Act>
+	  
+	  <!-- Behaviour of other entities -->
+	  
+      <Act name="Behavior">
+		<ManeuverGroup maximumExecutionCount="1" name="ManeuverSequence">
+		  
+		  <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="advasary"/>
+          </Actors>
+		  
+		  <!-- 2.1. Behaviour -->
+		  
+		  <Maneuver name="DrivingBackwardsSnippet">
+		  
+		    <!-- EVENT: Assign Waypoints that have to be achieved -->
+			<!-- NOTE: Tag "FollowRouteAction" is not supported. Thus, first assign, then use SpeedAction -->
+			
+		    <Event name="AssignPath" priority="overwrite">
+			
+			  <Action name="AssignPath">
+                <PrivateAction>
+                  <RoutingAction>
+                    <AssignRouteAction>
+                      <Route name="example_route" closed="false">
+              
+                        <Waypoint routeStrategy="shortest">
+                          <Position>
+                            <WorldPosition x="286.8" y="-240.2" />
+                          </Position>
+                        </Waypoint>
+                        <Waypoint routeStrategy="shortest">
+                          <Position>
+                            <WorldPosition x="289.9" y="-246.5" />
+                          </Position>
+                        </Waypoint>
+						<Waypoint routeStrategy="shortest">
+                          <Position>
+                            <WorldPosition x="300.1" y="-246.5" />
+                          </Position>
+                        </Waypoint>
+                        
+                      </Route>
+                    </AssignRouteAction>
+                  </RoutingAction>
+                </PrivateAction>
+              </Action>
+
+			  
+			  <Action name="DriveBegin">
+			    <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="20" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="3.0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+			  
+			  <StartTrigger> <!-- Immediately start assigning path -->
+                <ConditionGroup>
+                  <Condition name="ImmediateStartCondition" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                      <SimulationTimeCondition value="0" rule="greaterThan"/>
+                    </ByValueCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+			  
+			</Event>
+			
+			<Event name="WaitEvent" priority="overwrite">
+			
+              <Action name="emptyAction">
+                  <!-- No action is taken -->
+              </Action>
+			  
+              <StartTrigger>
+                  <ConditionGroup>
+                      <Condition name="WaitCondition" delay="0" conditionEdge="rising">
+                          <ByValueCondition>
+                              <SimulationTimeCondition value="25" rule="greaterThan"/> <!-- Wait for 10 seconds -->
+                          </ByValueCondition>
+                      </Condition>
+                  </ConditionGroup>
+              </StartTrigger>
+			  
+            </Event>
+						
+		  </Maneuver>
+		</ManeuverGroup>
+		
+		<!-- 2.2. Story Start -->
+		
+		<StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="1"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+		
+      </Act>
+    </Story>
+
+    <!-- 3. Overall SUCCESS/FAILURE Test Criteria -->
+	
+	<StopTrigger>
+      <ConditionGroup>
+	    <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+	  </ConditionGroup>
+	 </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2024-08-12T00:00:00" description="CARLA:ParallelParkOutTown15" author="Trusted AI @ IAIK TU Graz"/>
+  <ParameterDeclarations/>
+  <CatalogLocations/>
+
+  <!-- 2. Define Road -->
+
+  <RoadNetwork>
+    <LogicFile filepath="Town15"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+
+  <!-- 3. Define Entities -->
+
+  <Entities>
+    
+    <ScenarioObject name="hero">
+      <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+    <ScenarioObject name="front_vehicle">
+      <Vehicle name="vehicle.mini.cooper_s_2021" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+    <ScenarioObject name="back_vehicle">
+      <Vehicle name="vehicle.seat.leon" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+  </Entities>
+  <Storyboard>
+
+    <!-- 3. Define Initial -->
+
+    <Init>
+      <Actions>
+
+        <!-- Init Environment -->
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2019-06-25T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.85" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="dry" intensity="0.0"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+
+        <!-- Init Hero -->
+        <Private entityRef="hero">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="-233.83045959472656" y="435.1332702636719" z="155.57330322265625" h="4.136"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="false"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+
+      <!-- Init front vehicle -->
+      <Private entityRef="front_vehicle">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+            <!-- <WorldPosition x="-237.5" y="429.5" z="155.99180603027344" h="4.2"/> -->
+            <!-- <WorldPosition x="-237" y="430" z="155.99180603027344" h="4.2"/> -->
+            <!-- <WorldPosition x="-236.5" y="430.5" z="155.99180603027344" h="4.2"/> -->
+            <WorldPosition x="-236.5" y="431" z="155.99180603027344" h="4.2"/>
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+        <PrivateAction>
+          <ControllerAction>
+            <AssignControllerAction>
+              <Controller name="FrontVehicleAgent">
+                <Properties>
+                  <Property name="module" value="npc_vehicle_control"/>
+                </Properties>
+              </Controller>
+            </AssignControllerAction>
+            <OverrideControllerValueAction>
+              <Throttle value="0" active="false"/>
+              <Brake value="0" active="false"/>
+              <Clutch value="0" active="false"/>
+              <ParkingBrake value="0" active="false"/>
+              <SteeringWheel value="0" active="false"/>
+              <Gear number="0" active="false"/>
+            </OverrideControllerValueAction>
+          </ControllerAction>
+        </PrivateAction>
+      </Private>
+
+      <!-- Init back vehicle -->
+      <Private entityRef="back_vehicle">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+              <!--<WorldPosition x="-229.9" y="440" z="155.99180603027344" h="4"/> -->
+              <!--<WorldPosition x="-230.2" y="439.5" z="155.99180603027344" h="4"/> -->
+              <!--<WorldPosition x="-230.5" y="439" z="155.99180603027344" h="4"/>-->
+              <WorldPosition x="-230.9" y="438.5" z="155.99180603027344" h="4"/>
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+        <PrivateAction>
+          <ControllerAction>
+            <AssignControllerAction>
+              <Controller name="BackVehicleAgent">
+                <Properties>
+                  <Property name="module" value="npc_vehicle_control"/>
+                </Properties>
+              </Controller>
+            </AssignControllerAction>
+            <OverrideControllerValueAction>
+              <Throttle value="0" active="false"/>
+              <Brake value="0" active="false"/>
+              <Clutch value="0" active="false"/>
+              <ParkingBrake value="0" active="false"/>
+              <SteeringWheel value="0" active="false"/>
+              <Gear number="0" active="false"/>
+            </OverrideControllerValueAction>
+          </ControllerAction>
+        </PrivateAction>
+      </Private>
+
+      </Actions>
+    </Init>
+
+    <!-- Define Story -->
+
+    <Story name="MyStory">
+
+      <Act name="WaitBehaviourAct">
+
+        <ManeuverGroup maximumExecutionCount="1" name="WaitBehaviourSequence">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="hero"/>
+          </Actors>
+          <Maneuver name="WaitBehaviourManeuver">
+ 
+           <!-- EVENT: Wait until Vehicle reaches a certain position, then do nothing -->
+ 
+            <Event name="WaitUntilEvent" priority="overwrite">
+  
+              <Action name="DoNothing"> </Action>
+
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="WaitUntilEventStartCondition" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="hero"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <ReachPositionCondition tolerance="10.0">
+                          <Position>
+                            <WorldPosition x="-246.89" y="421.7" z="157.37" h="4.52"/> 
+                          </Position>
+                        </ReachPositionCondition>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+              
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+
+        <!-- Act Starting -->
+
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallWaitBehaviourActStartCondition" delay="0" conditionEdge="rising">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+
+      </Act>
+
+      
+    </Story>
+  
+    <!-- Define final EXIT Criteria -->
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

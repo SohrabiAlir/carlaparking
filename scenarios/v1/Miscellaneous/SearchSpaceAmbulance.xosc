@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2020-03-24T12:00:00" description="CARLA:PlayfulChild" author="Trusted AI"/>
+  <ParameterDeclarations/>
+  <CatalogLocations/>
+
+<!-- Define Map -->
+
+  <RoadNetwork>
+    <LogicFile filepath="Town04"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+ 
+<!-- Define Entities -->
+  
+  <Entities>
+	
+	<ScenarioObject name="hero">
+      <Vehicle name="vehicle.mercedes.sprinter" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+	<ScenarioObject name="pedestrian">
+      <Pedestrian model="walker.pedestrian.0030" mass="90.0" name="walker.pedestrian.0030" pedestrianCategory="pedestrian"> <!-- TODO: Verify Params -->
+        <ParameterDeclarations/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Pedestrian>
+    </ScenarioObject>
+	
+	<ScenarioObject name="parked">
+      <Vehicle name="vehicle.ford.ambulance" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/> <!-- TODO: Verify Params -->
+          <Dimensions width="2.1" length="4.5" height="1.8"/> <!-- TODO: Verify Params -->
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/> <!-- TODO: Verify Params -->
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/> <!-- TODO: Verify Params -->
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+	
+  </Entities>
+
+<!-- Define Story -->
+  
+  <Storyboard>
+  
+   <!-- 1. Define Initial -->
+   
+    <Init>
+      <Actions>
+	  
+	  	<!-- 1.1. Init Environment -->
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2019-06-25T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.35" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="rain" intensity="0.2"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+	
+        <!-- 1.2. Init Ego Vehicle -->
+        <Private entityRef="hero">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="286" y="-226.6" z="0.3" h="1.57079632679"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="0"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+		
+		<!-- 1.3. Init NPC Pedestrian -->
+        <Private entityRef="pedestrian">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="290" y="-224" z="0.3" h="1.57079632679"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+		<!-- 1.4. Init Parked Car -->
+		<Private entityRef="parked">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <WorldPosition x="290.7" y="-230.1" z="0.3" h="4.7123889"/> 
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+        </Private>
+		
+      </Actions>
+    </Init>
+    
+	<!-- 2. STORY -->
+	
+    <Story name="MyStory">
+      <Act name="Behavior">
+		<ManeuverGroup maximumExecutionCount="1" name="ManeuverSequence">
+		  
+		  <!-- TODO: What is htis ??? -->
+		  <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="pedestrian"/>
+          </Actors>
+		  
+		  <!-- 2.1. Behaviour -->
+		  <Maneuver name="NPCWaiting">
+		  
+		    <!-- EVENT: CHILD STARTS RUNNING -->
+			
+		    <Event name="NPCWaiting" priority="overwrite">
+			
+			  <Action name="NPCWaits">
+                <PrivateAction>
+                  <LongitudinalAction>
+                    <SpeedAction>
+                      <SpeedActionDynamics dynamicsShape="step" value="15" dynamicsDimension="time"/>
+                      <SpeedActionTarget>
+                        <AbsoluteTargetSpeed value="0"/>
+                      </SpeedActionTarget>
+                    </SpeedAction>
+                  </LongitudinalAction>
+                </PrivateAction>
+              </Action>
+			  
+			  <StartTrigger>
+				<ConditionGroup>
+					<Condition name="ImmediateStartCondition" delay="0" conditionEdge="rising">
+						<ByValueCondition>
+							<SimulationTimeCondition value="0" rule="greaterThan"/>
+						</ByValueCondition>
+					</Condition>
+				</ConditionGroup>
+			</StartTrigger>
+			  
+			</Event>
+		  </Maneuver>
+		  
+		</ManeuverGroup>
+		
+		<!-- 2.2. Story Start -->
+		
+		<StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+              <ByEntityCondition>
+                <TriggeringEntities triggeringEntitiesRule="any">
+                  <EntityRef entityRef="hero"/>
+                </TriggeringEntities>
+                <EntityCondition>
+                  <TraveledDistanceCondition value="0"/>
+                </EntityCondition>
+              </ByEntityCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+		
+		<!-- 2.3. Story END (applies if some events are still not executed) -->
+		
+		<StopTrigger>
+            <ConditionGroup>
+                <Condition name="TimeLimitReached" delay="0" conditionEdge="rising">
+                    <ByValueCondition>
+                        <SimulationTimeCondition value="30" rule="greaterThan"/>
+                    </ByValueCondition>
+                </Condition>
+            </ConditionGroup>
+        </StopTrigger>
+		
+      </Act>
+    </Story>
+
+    <!-- 3. Overall SUCCESS/FAILURE Test Criteria -->
+	
+	<StopTrigger>
+      <ConditionGroup>
+	    <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+		
+		<Condition name="criteria_CustomFinallyInTargetArea" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="min_x,max_x,min_y,max_y" value="287.7,294.27,-234.3,-231.1" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+
+		
+	  </ConditionGroup>
+	 </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>

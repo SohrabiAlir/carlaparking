@@ -291,7 +291,8 @@
             <ParameterCondition parameterRef="" value="" rule="lessThan"/>
           </ByValueCondition>
         </Condition>
-        <Condition name="criteria_CustomFinallyInTargetArea" delay="0" conditionEdge="rising">
+        
+		<Condition name="criteria_CustomFinallyInTargetArea" delay="0" conditionEdge="rising">
           <ByValueCondition>
             <ParameterCondition parameterRef="min_x,max_x,min_y,max_y" value="287.7,294.27,-234.3,-231.1" rule="lessThan"/>
           </ByValueCondition>

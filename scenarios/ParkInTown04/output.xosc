@@ -1,0 +1,1847 @@
+<?xml version="1.0"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2024-08-12T00:00:00" description="CARLA:ParkInTown04" author="Trusted AI @ IAIK TU Graz"/>
+  
+  <ParameterDeclarations/>
+
+  <CatalogLocations/>
+
+  <RoadNetwork>
+    <LogicFile filepath="Town04_Opt"/>
+    <SceneGraphFile filepath=""/>
+  </RoadNetwork>
+
+  <Entities>
+    
+    <ScenarioObject name="hero">
+      <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="ego_vehicle"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+    <ScenarioObject name="left_vehicle">
+      <Vehicle name="vehicle.dodge.charger_2020" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="0.0" y="0.0" z="0.0"/>
+          <Dimensions width="1.8816219568252563" length="5.0078253746032715" height="1.5347249507904053"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+    <ScenarioObject name="right_vehicle">
+      <Vehicle name="vehicle.lincoln.mkz_2020" vehicleCategory="car">
+        <ParameterDeclarations/>
+        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+        <BoundingBox>
+          <Center x="1.5" y="0.0" z="0.9"/>
+          <Dimensions width="2.1" length="4.5" height="1.8"/>
+        </BoundingBox>
+        <Axles>
+          <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+          <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+        </Axles>
+        <Properties>
+          <Property name="type" value="simulation"/>
+        </Properties>
+      </Vehicle>
+    </ScenarioObject>
+
+<ScenarioObject name='static_vehicle_0'>
+  <Vehicle name='vehicle.seat.leon' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_1'>
+  <Vehicle name='vehicle.mini.cooper_s_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_2'>
+  <Vehicle name='vehicle.mercedes.coupe_2020' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_3'>
+  <Vehicle name='vehicle.toyota.prius' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_4'>
+  <Vehicle name='vehicle.mercedes.coupe_2020' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_5'>
+  <Vehicle name='vehicle.volkswagen.t2_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_6'>
+  <Vehicle name='vehicle.ford.mustang' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_7'>
+  <Vehicle name='vehicle.audi.a2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_8'>
+  <Vehicle name='vehicle.toyota.prius' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_9'>
+  <Vehicle name='vehicle.ford.crown' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_10'>
+  <Vehicle name='vehicle.volkswagen.t2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_11'>
+  <Vehicle name='vehicle.nissan.patrol_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_12'>
+  <Vehicle name='vehicle.ford.mustang' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_13'>
+  <Vehicle name='vehicle.mercedes.coupe_2020' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_14'>
+  <Vehicle name='vehicle.nissan.patrol_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_15'>
+  <Vehicle name='vehicle.nissan.patrol' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_16'>
+  <Vehicle name='vehicle.volkswagen.t2_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_17'>
+  <Vehicle name='vehicle.mercedes.coupe' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_18'>
+  <Vehicle name='vehicle.audi.etron' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_19'>
+  <Vehicle name='vehicle.citroen.c3' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_20'>
+  <Vehicle name='vehicle.ford.crown' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_21'>
+  <Vehicle name='vehicle.toyota.prius' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_22'>
+  <Vehicle name='vehicle.audi.tt' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_23'>
+  <Vehicle name='vehicle.nissan.micra' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_24'>
+  <Vehicle name='vehicle.nissan.patrol' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_25'>
+  <Vehicle name='vehicle.tesla.model3' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_26'>
+  <Vehicle name='vehicle.nissan.micra' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_27'>
+  <Vehicle name='vehicle.volkswagen.t2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_28'>
+  <Vehicle name='vehicle.mercedes.coupe_2020' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_29'>
+  <Vehicle name='vehicle.audi.etron' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_30'>
+  <Vehicle name='vehicle.audi.etron' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_31'>
+  <Vehicle name='vehicle.volkswagen.t2_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_32'>
+  <Vehicle name='vehicle.nissan.micra' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_33'>
+  <Vehicle name='vehicle.volkswagen.t2_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_34'>
+  <Vehicle name='vehicle.toyota.prius' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_35'>
+  <Vehicle name='vehicle.mercedes.coupe' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_36'>
+  <Vehicle name='vehicle.audi.a2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_37'>
+  <Vehicle name='vehicle.audi.tt' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_38'>
+  <Vehicle name='vehicle.nissan.micra' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_39'>
+  <Vehicle name='vehicle.nissan.patrol_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_40'>
+  <Vehicle name='vehicle.volkswagen.t2_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_41'>
+  <Vehicle name='vehicle.audi.tt' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_42'>
+  <Vehicle name='vehicle.volkswagen.t2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_43'>
+  <Vehicle name='vehicle.seat.leon' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_44'>
+  <Vehicle name='vehicle.audi.a2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_45'>
+  <Vehicle name='vehicle.audi.a2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_46'>
+  <Vehicle name='vehicle.volkswagen.t2_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_47'>
+  <Vehicle name='vehicle.ford.crown' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_48'>
+  <Vehicle name='vehicle.jeep.wrangler_rubicon' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_49'>
+  <Vehicle name='vehicle.ford.crown' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_50'>
+  <Vehicle name='vehicle.nissan.micra' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_51'>
+  <Vehicle name='vehicle.ford.crown' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_52'>
+  <Vehicle name='vehicle.nissan.patrol' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_53'>
+  <Vehicle name='vehicle.nissan.micra' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_54'>
+  <Vehicle name='vehicle.audi.etron' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_55'>
+  <Vehicle name='vehicle.mini.cooper_s_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_56'>
+  <Vehicle name='vehicle.mini.cooper_s_2021' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_57'>
+  <Vehicle name='vehicle.volkswagen.t2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_58'>
+  <Vehicle name='vehicle.ford.crown' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_59'>
+  <Vehicle name='vehicle.toyota.prius' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+<ScenarioObject name='static_vehicle_60'>
+  <Vehicle name='vehicle.volkswagen.t2' vehicleCategory='car'>
+    <ParameterDeclarations/>
+    <Performance maxSpeed='69.444' maxAcceleration='200' maxDeceleration='10.0'/>
+    <BoundingBox>
+      <Center x='1.5' y='0.0' z='0.9'/>
+      <Dimensions width='2.1' length='4.5' height='1.8'/>
+    </BoundingBox>
+    <Axles>
+      <FrontAxle maxSteering='0.5' wheelDiameter='0.6' trackWidth='1.8' positionX='3.1' positionZ='0.3'/>
+      <RearAxle maxSteering='0.0' wheelDiameter='0.6' trackWidth='1.8' positionX='0.0' positionZ='0.3'/>
+    </Axles>
+    <Properties>
+      <Property name='type' value='simulation'/>
+    </Properties>
+  </Vehicle>
+</ScenarioObject>
+
+
+  </Entities>
+  <Storyboard>
+
+    <!-- 3. Define Initial -->
+
+    <Init>
+      <Actions>
+
+        <!-- Init Environment -->
+        <GlobalAction>
+          <EnvironmentAction>
+            <Environment name="Environment1">
+              <TimeOfDay animation="false" dateTime="2019-06-25T12:00:00"/>
+              <Weather cloudState="free">
+                <Sun intensity="0.85" azimuth="0" elevation="1.31"/>
+                <Fog visualRange="100000.0"/>
+                <Precipitation precipitationType="dry" intensity="0.0"/>
+              </Weather>
+              <RoadCondition frictionScaleFactor="1.0"/>
+            </Environment>
+          </EnvironmentAction>
+        </GlobalAction>
+
+        <!-- Init Hero -->
+        <Private entityRef="hero">
+          <PrivateAction>
+            <TeleportAction>
+              <Position>
+                <!--<WorldPosition x="280.2" y="-229.5" z="0.3" h="3.14159265358979323846"/>-->
+                <WorldPosition x="285.83" y="-247.68" z="0.3" h="3.14159265358979323846"/>
+              </Position>
+            </TeleportAction>
+          </PrivateAction>
+          <PrivateAction>
+            <ControllerAction>
+              <AssignControllerAction>
+                <Controller name="HeroAgent">
+                  <Properties>
+                    <Property name="module" value="external_control"/>
+                  </Properties>
+                </Controller>
+              </AssignControllerAction>
+              <OverrideControllerValueAction>
+                <Throttle value="0" active="false"/>
+                <Brake value="0" active="false"/>
+                <Clutch value="0" active="false"/>
+                <ParkingBrake value="0" active="false"/>
+                <SteeringWheel value="0" active="false"/>
+                <Gear number="0" active="false"/>
+              </OverrideControllerValueAction>
+            </ControllerAction>
+          </PrivateAction>
+        </Private>
+
+      <!-- Init left vehicle -->
+      <Private entityRef="left_vehicle">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+                <WorldPosition x="280.2" y="-225.96724737017763" z="0.3" h="3.14159265358979323846"/> 
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+        <PrivateAction>
+          <ControllerAction>
+            <AssignControllerAction>
+              <Controller name="LeftVehicleAgent">
+                <Properties>
+                  <Property name="module" value="vehicle_longitudinal_control"/>
+                </Properties>
+              </Controller>
+            </AssignControllerAction>
+            <OverrideControllerValueAction>
+              <Throttle value="0" active="false"/>
+              <Brake value="0" active="false"/>
+              <Clutch value="0" active="false"/>
+              <ParkingBrake value="0" active="false"/>
+              <SteeringWheel value="0" active="false"/>
+              <Gear number="0" active="false"/>
+            </OverrideControllerValueAction>
+          </ControllerAction>
+        </PrivateAction>
+      </Private> 
+
+      <!-- Init right vehicle -->
+      <Private entityRef="right_vehicle">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+              <WorldPosition x="280.2" y="-233.38371896947174" z="0.3" h="0"/> 
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+        <PrivateAction>
+          <ControllerAction>
+            <AssignControllerAction>
+              <Controller name="RightVehicleAgent">
+                <Properties>
+                  <Property name="module" value="vehicle_longitudinal_control"/>
+                </Properties>
+              </Controller>
+            </AssignControllerAction>
+            <OverrideControllerValueAction>
+              <Throttle value="0" active="false"/>
+              <Brake value="0" active="false"/>
+              <Clutch value="0" active="false"/>
+              <ParkingBrake value="0" active="false"/>
+              <SteeringWheel value="0" active="false"/>
+              <Gear number="0" active="false"/>
+            </OverrideControllerValueAction>
+          </ControllerAction>
+        </PrivateAction>
+      </Private>
+
+<Private entityRef='static_vehicle_0'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.9' y='-235.9' z='0.3' h='0.05235987755982989'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_1'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.5' y='-232.7' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_2'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.5' y='-229.5' z='0.3' h='-0.017453292519943295'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_3'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.8' y='-226.4' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_4'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.5' y='-223.4' z='0.3' h='3.1066860685499065'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_5'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.5' y='-220.2' z='0.3' h='3.2114058236695664'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_6'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.6' y='-217.1' z='0.3' h='-0.05235987755982989'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_7'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.6' y='-214.0' z='0.3' h='-0.017453292519943295'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_8'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.7' y='-210.8' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_9'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.8' y='-207.4' z='0.3' h='3.1764992386296798'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_10'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.8' y='-204.2' z='0.3' h='3.0892327760299634'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_11'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.7' y='-201.1' z='0.3' h='-0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_12'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.7' y='-198.0' z='0.3' h='0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_13'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.6' y='-194.8' z='0.3' h='3.0892327760299634'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_14'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.5' y='-191.5' z='0.3' h='-0.03490658503988659'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_15'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='298.7' y='-188.2' z='0.3' h='3.07177948351002'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_16'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.6' y='-235.7' z='0.3' h='0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_17'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.7' y='-232.9' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_18'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-229.4' z='0.3' h='3.2288591161895095'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_19'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-226.4' z='0.3' h='-0.06981317007977318'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_20'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-223.4' z='0.3' h='-0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_21'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='291.0' y='-220.2' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_22'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-217.1' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_23'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-214.0' z='0.3' h='0.03490658503988659'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_24'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-210.8' z='0.3' h='3.2288591161895095'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_25'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-207.4' z='0.3' h='3.141592653589793'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_26'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-204.2' z='0.3' h='-0.06981317007977318'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_27'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-201.1' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_28'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-198.0' z='0.3' h='3.193952531149623'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_29'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-194.8' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_30'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-191.5' z='0.3' h='3.1764992386296798'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_31'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='290.8' y='-188.2' z='0.3' h='3.1590459461097367'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_32'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-235.8' z='0.3' h='0.0'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_33'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-223.3' z='0.3' h='3.141592653589793'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_34'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-220.2' z='0.3' h='3.0892327760299634'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_35'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-217.1' z='0.3' h='0.017453292519943295'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_36'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-214.0' z='0.3' h='-0.06981317007977318'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_37'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-210.8' z='0.3' h='0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_38'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-207.4' z='0.3' h='3.193952531149623'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_39'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-204.2' z='0.3' h='0.05235987755982989'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_40'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-201.1' z='0.3' h='0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_41'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-198.0' z='0.3' h='3.1066860685499065'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_42'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-194.8' z='0.3' h='-0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_43'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-191.5' z='0.3' h='-0.08726646259971647'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_44'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='280.2' y='-188.2' z='0.3' h='-0.017453292519943295'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_45'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-235.7' z='0.3' h='3.1066860685499065'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_46'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-232.9' z='0.3' h='3.141592653589793'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_47'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-229.4' z='0.3' h='0.05235987755982989'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_48'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-226.4' z='0.3' h='0.0'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_49'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-223.4' z='0.3' h='3.1764992386296798'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_50'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-220.2' z='0.3' h='-0.06981317007977318'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_51'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-217.1' z='0.3' h='-0.03490658503988659'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_52'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-214.0' z='0.3' h='3.1764992386296798'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_53'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-210.8' z='0.3' h='3.1066860685499065'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_54'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-207.4' z='0.3' h='3.2288591161895095'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_55'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-204.2' z='0.3' h='3.141592653589793'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_56'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-201.1' z='0.3' h='3.1764992386296798'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_57'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-198.0' z='0.3' h='0.0'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_58'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-194.8' z='0.3' h='-0.03490658503988659'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_59'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-191.5' z='0.3' h='3.141592653589793'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+<Private entityRef='static_vehicle_60'>
+  <PrivateAction>
+    <TeleportAction>
+      <Position>
+        <WorldPosition x='272.4' y='-188.2' z='0.3' h='3.07177948351002'/>
+      </Position>
+    </TeleportAction>
+  </PrivateAction>
+</Private>
+
+
+      </Actions>
+    </Init>
+
+    <!-- Define Story -->
+
+    <Story name="MyStory">
+
+      <Act name="WaitBehaviourAct">
+
+        <ManeuverGroup maximumExecutionCount="1" name="WaitBehaviourSequence">
+          <Actors selectTriggeringEntities="false">
+            <EntityRef entityRef="hero"/>
+          </Actors>
+          <Maneuver name="WaitBehaviourManeuver">
+ 
+           <!-- EVENT: Wait until Vehicle reaches a certain position, then do nothing -->
+ 
+            <Event name="WaitUntilEvent" priority="overwrite">
+  
+              <Action name="DoNothing"> </Action>
+
+              <StartTrigger>
+                <ConditionGroup>
+                  <Condition name="WaitUntilEventStartCondition" delay="0" conditionEdge="rising">
+                    <ByEntityCondition>
+                      <TriggeringEntities triggeringEntitiesRule="any">
+                        <EntityRef entityRef="hero"/>
+                      </TriggeringEntities>
+                      <EntityCondition>
+                        <ReachPositionCondition tolerance="1">
+                          <Position>
+                            <WorldPosition x="-286" y="-259" z="0.3" h="0"/>
+                          </Position>
+                        </ReachPositionCondition>
+                      </EntityCondition>
+                    </ByEntityCondition>
+                  </Condition>
+                </ConditionGroup>
+              </StartTrigger>
+              
+            </Event>
+          </Maneuver>
+        </ManeuverGroup>
+
+        <!-- Act Starting -->
+
+        <StartTrigger>
+          <ConditionGroup>
+            <Condition name="OverallWaitBehaviourActStartCondition" delay="0" conditionEdge="rising">
+              <ByValueCondition>
+                <SimulationTimeCondition value="0" rule="greaterThan"/>
+              </ByValueCondition>
+            </Condition>
+          </ConditionGroup>
+        </StartTrigger>
+
+      </Act>
+
+    </Story>
+  
+    <!-- Define final EXIT Criteria -->
+
+    <StopTrigger>
+      <ConditionGroup>
+        <Condition name="criteria_CollisionTest" delay="0" conditionEdge="rising">
+          <ByValueCondition>
+            <ParameterCondition parameterRef="" value="" rule="lessThan"/>
+          </ByValueCondition>
+        </Condition>
+      </ConditionGroup>
+    </StopTrigger>
+
+  </Storyboard>
+</OpenSCENARIO>
