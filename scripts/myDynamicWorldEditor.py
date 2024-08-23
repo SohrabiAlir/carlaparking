@@ -79,15 +79,16 @@ def debug(client: carla.Client, world: carla.World):
     print("Please start now the scenario!")
     input("Press [OK] once all scenario entities are conencted.")
 
-    # Fetch all actors after simulation start to get 
-    
     actors_after_scenario = world.get_actors()
 
-    if (len(actors_before_scenario) == len(actors_after_scenario)):
-        raise ValueError("No new actor found!")
+    # If scenario was started AFTER connection, build set intersection to only display the newly connected actors
+    # Otherwise, we simply display all found actors. 
 
-    scenario_actors = [actor for actor in actors_after_scenario if actor not in actors_before_scenario]
-    
+    if (len(actors_before_scenario) == len(actors_after_scenario)):
+        scenario_actors = actors_after_scenario
+    else:
+        scenario_actors = [actor for actor in actors_after_scenario if actor not in actors_before_scenario]
+
     # List all new actors and ask which one should be followed
 
     for actor in scenario_actors:
