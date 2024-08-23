@@ -10,24 +10,17 @@
 # Context: Project <Testing of Autonomous Parking> @ IAIK 2024
 
 """
-    Version 1.0: Script for filling parking spaces by custom CSV. 
-    REQUIRED: Already correctly set-up world (see myDynamicWorldEditor.py)
+    This Script provdes a class that can be used to either
+        1. generate OpenSCENARIO 1.0 code for entity definition and initialization with.. 
+        2. (live) populate the current CARLA world with..    
+    vehicles or static assets, according to provided csv file.
 
-    Description:
-        - Script reads and parses CSV file, spawns vehicles according to the specified CSV within the parking lot.
-        - As soon as the script is killed (CTRL + C), all spawned vehicles despawn.
-        - The script does not change ANY world settings and affects the simulation by spawning / destorying actors.
-
-    Important Notes:
-        - A Parking Space Configuration file is ONLY related to the related SPECIFIC World Map!
-        - Currently ONLY Town04_Opt is suported (!)
-
-    Configurations Variables:
+    Configurations Variables for VEHICLE:
         - DEFAULT_YAWS: Collection of all possible default values if yaw is not specified in CSV file.
         - DEFAULT_CARS_BP: Collection of all possibel default values if vehicle_bp is not specified in CSV file.
 
-    CSV Columns:
-        - id (int): Internal unique identifier for CSV file (not used for CARLA)
+    CSV Columns for VEHICLE:
+        - id (int): Internal unique identifier within CSV file (not used for CARLA)
         - row (int): Row of the parking spot (see Town04), only used for debugging
         - col (int): Column of the parking spot (see Town04), only used for debugging
         - x (flaot): x - coordinate, where vehicle sould spawn
@@ -39,10 +32,17 @@
         - vehicle_bp (string|None): Blueprint for vehicle that should be spawned at given location
             -> None: A random blueprint of DEFAULT_CARS_BP will be used
 
-    Hints for Usage
-        - For letting a parking space "empty", simply delete the corresponding row in the CSV file. 
-          No Other values needs to be adepted.
-        - For intuitively identifying a specific parking slot, see TownXXParkingSpacePosition.png
+    CSV Columns for STATIC ASSET: 
+        - id (int): Internal unique identifier within CSV file (not used for CARLA)
+        - x (flaot): x - coordinate of static asset
+        - y (float): y - coordinate of static asset
+        - z (flaot): z - coordinate of static asset
+        - yaw: (float): yaw of static asset
+        - asset_bp: The actor.type_id of the static asset that should be used.
+
+    This script can also be used for standalone (live populates the world) with following flags:
+        - --vehicle <PATH_TO_CSV>
+        - --asset <PATH_TO_CSV>
 """
 
 import glob
@@ -457,8 +457,6 @@ def main():
     )
     args = argparser.parse_args()
     
-    # TODO: Use capability of argparser to ensure mutally excusiveness for --asset / --vehicle
-
     if not args.vehicle is None and args.asset is None:
         print("Nothing to do!")
 
