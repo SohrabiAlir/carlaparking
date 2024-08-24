@@ -119,11 +119,11 @@ class ParamConfigGeneratorTown04ParkIn(object):
         assert distance - 1.84552001953125 > 0
         assert 6.63861083984375 - distance > 0
 
-        ### DEBUG 
-        # distance = 1.84552001953125
-        # propLeft = 50
-        # propRight = 50
-        ###
+        ## DEBUG 
+        distance = 1.84552001953125
+        propLeft = 50
+        propRight = 50
+        ##
 
         # Calculae coordinates [see BoK: Slide 131]
 
@@ -240,7 +240,35 @@ class ParamConfigGeneratorTown04ParkIn(object):
 
 # =====================================================================================================================
 
+class ParamConfigGeneratorTown04OppositeTraffic(object):
+    
+    def __init__(self):
+        pass
+
+    def sample(self) -> typing.Dict[str, float]:
+
+        param_gap = np.random.normal(5.5, 3)
+        param_bias = np.random.normal(0, 0.5)
+        param_distance = np.random.uniform(0, 10)
+        param_velocity = np.random.uniform(0.5, 10)
+
+        dep_right_bias = -229 + param_bias + param_gap/2
+        dep_left_bias = -229 + param_bias - param_gap/2
+        dep_bike = -225 + param_distance
+
+        return {
+            '{Y_BIKE_START}': dep_bike,
+            '{Y_LEFT_PARKED_CAR}': dep_left_bias,
+            '{Y_RIGHT_PARKED_CAR}': dep_right_bias,
+            '{MOVING_CAR_VELOCITY}': param_velocity
+        }
+
+
+# =====================================================================================================================
+
 def main():
+
+    ## ParkInTown04
 
     parked_cars_generator = VehicleSpawner()
     parked_vehicles: typing.Dict[str, str] = parked_cars_generator.generateXOSC(
@@ -260,6 +288,16 @@ def main():
             "{Y_POSITION_CAR_LEFT}" : params["Y_VEHICLE_LEFT"],
             "{Y_POSITION_CAR_RIGHT}" : params["Y_VEHICLE_RIGHT"]
         }
+    )
+
+    ## OppositeTrafficParkInTown04
+
+    params: dict[str, float] = ParamConfigGeneratorTown04OppositeTraffic().sample()
+
+    OSCXBuilder(
+        template_file_path="../scenarios/OpposingTrafficParkInTown04/blueprint.xml", 
+        output_file_path="../scenarios/OpposingTrafficParkInTown04/output.xosc",
+        config=params
     )
 
 # =====================================================================================================================
